@@ -14,11 +14,14 @@ $(document).ready(function(){
             //Dynamically populated with fillSympt function      
         ];
 
-    //Setup Object
-    var setup = {
-        //Function to populate bodySystems Array
+    //UserComplaint Object this will house all the properties and methods concerning the userComplaint
+    var usrComplaint = {        
+        //Function to dynamically populate bodySystems Array
         fillBS:function() {
-            var obj;
+            var self = this,
+                obj;
+
+            //loop through bsIndexArray to build bodySystem Objects and push said objects to bodySystems[]
             $.each(bsIndexArray, function(key, value){
                 obj = { Name: value, ID: key }; //bodySystem objTemplate
                 bodySystems.push(obj);
@@ -62,13 +65,19 @@ $(document).ready(function(){
             console.log('Symptoms Array:');
             console.log(symptoms);
         },
+        //Function to check if an object already exists in an array
+        isInArray: function(arr, obj)
+        {
+            /* At this point I think this function is a nice to have. for the time being just make sure that 
+            neither of the global index arrays have duplicate values manually I can forsee duplicates causing issues */
+        },
         //Function to initiate setup. At this point it is only setting up the global variables
-        init: function(){
+        setup: function(){
             this.fillBS();
             this.fillSympt();
         }   
     }
 
     //Functions to be called when page loads
-    setup.init();
+    usrComplaint.setup();
 });

@@ -1,9 +1,33 @@
 $(document).ready(function(){
     //Global Variables
-    var bsIndexArray = ['arm', 'leg'],
+    var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Throat","Shoulder","Chest","Back","Arm","Elbow","Wrist","Hand","Fingers","Stomach","Hip","Leg","Knee","Foot","Toes"],
         symIndexArray = [
-            {name: 'broken', bSArr:['leg', 'arm']},
-            {name:'sprain', bSArr:['arm','foot']}
+            {name: 'Bleeding', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+            {name: 'Chills', bSArr:['General Feeling']},
+            {name: 'Coughing', bSArr:['General Feeling','Mouth','Neck/Throat','Chest','Back']},
+            {name: 'Digestive Problems', bSArr:['General Feeling','Stomach']},
+            {name: 'Dizzy', bSArr:['General Feeling','Head']},
+            {name: 'Dry', bSArr:['General Feeling','Eye','Ear','Nose','Mouth','Neck/Throat','Chest']},
+            {name: 'Fever', bSArr:['General Feeling','Head']},
+            {name: 'Light-headed', bSArr:['General Feeling','Head']},
+            {name: 'Nausea/Vomiting', bSArr:['General Feeling','Stomach']},
+            {name: 'Numbness/Tingling', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+            {name: 'Pain', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+            {name: 'Short of Breath', bSArr:['General Feeling','Neck/Throat','Chest','Back']},
+            {name: 'Sick', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+            {name: 'Sleepy', bSArr:['General Feeling']},
+            {name: 'Sweaty', bSArr:['General Feeling']},
+            {name: 'Thirsty', bSArr:['General Feeling','Mouth','Neck/Throat']},
+            {name: 'Tired', bSArr:['General Feeling']},
+            {name: 'Trouble Breathing', bSArr:['General Feeling','Chest']},
+            {name: 'Trouble Hearing', bSArr:['General Feeling','Ear']},
+            {name: 'Trouble Seeing', bSArr:['General Feeling','Eye']},
+            {name: 'Trouble Sleeping', bSArr:['General Feeling']},
+            {name: 'Trouble Smelling', bSArr:['General Feeling','Nose']},
+            {name: 'Trouble Speaking', bSArr:['General Feeling','Head','Mouth']},
+            {name: 'Trouble Walking', bSArr:['General Feeling','Back','Stomach','Hip','Leg','Knee','Foot','Toes']},
+            {name: 'Urinary Problems', bSArr:['General Feeling','Stomach']},
+            {name: 'Weak', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']}
         ],
         bodySystems = [
             //An array of all Body Systems to be used to populate DDL

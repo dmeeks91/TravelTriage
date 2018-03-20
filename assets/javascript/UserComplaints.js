@@ -115,5 +115,20 @@ $(document).ready(function(){
 
     //Functions to be called when page loads
     usrComplaint.setup();
+  
     usrComplaint.symptSelect(); // Change this to respond to user selection   
+
+
+    var bsInput = app.form.convertToData('#my-form')
+    function checkbsInput (value, array) {
+        for (var key in symIndexArray)
+        var index = array[key]
+        if (value === array[key])
+        console.log
+    }
+
+    checkbsInput(bsInput, );
+    console.log(bsIndexArray)
+    console.log(symIndexArray)
+
 });

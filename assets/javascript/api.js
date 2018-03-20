@@ -1,6 +1,26 @@
 var $$ = Dom7;
 
+// Framework7 App main instance
+var app  = new Framework7({
+  root: '#app', // App root element
+  id: 'io.framework7.testapp', // App bundle ID
+  name: 'Framework7', // App name
+  theme: 'auto', // Automatic theme detection
+  
+  // App root methods
+  methods: {
+    helloWorld: function () {
+      app.dialog.alert('Hello World!');
+    },
+  },
+  // App routes
+  routes: routes,
+});
 
+// Init/Create main view
+var mainView = app.views.create('.view-main', {
+  url: '/'
+});
 
 var map;
 var infowindow;
@@ -45,50 +65,6 @@ function createMarker(place) {
 }
 
 
-// Framework7 App main instance
-var app  = new Framework7({
-  root: '#app', // App root element
-  id: 'io.framework7.testapp', // App bundle ID
-  name: 'Framework7', // App name
-  theme: 'auto', // Automatic theme detection
-  // App root data
-  data: function () {
-    return {
-      user: {
-        firstName: 'John',
-        lastName: 'Doe',
-      },
-    };
-  },
-  // App root methods
-  methods: {
-    helloWorld: function () {
-      app.dialog.alert('Hello World!');
-    },
-  },
-  // App routes
-  routes: routes,
-});
-
-// Init/Create main view
-var mainView = app.views.create('.view-main', {
-  url: '/'
-});
-
-$('#plus').on('click', function () {
- var addsymp = `<li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label" id="item-title">&#8226;</div>
-                    <div class="item-input-wrap">
-                      <input type="text" class="symptoms">
-                      <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li>`
-  $('#add-more').append(addsymp)
-
-})
-
 var symptomArray = [];
 
 $('#submit').on('click', function () {
@@ -131,19 +107,6 @@ for (var key in translatedArray) {
   ${key, translatedArray[key]}</li>`)
 
 }
-
-
-  //  var translatedDisp = `
-  //   <div class="card">
-  //   <div class="card-header"></div>
-  //   <div class="card-content no-hairlines">
-  //      <div class="card-content-inner">
-  //      </div>
-  //   </div>
-  //   <div class="card-footer"></div>
-  //   </div> 
-  //   </div>`
-  
 
     var userlocation = $("input.location[type=text]").val()
     var googleCoord = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCnghntSOf7EteeY_c8Ngej65kyVoktDp0"

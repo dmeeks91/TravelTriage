@@ -99,9 +99,21 @@ $(document).ready(function(){
         setup: function(){
             this.fillBS();
             this.fillSympt();
+        },
+        symptSelect: function(){
+            var bsSelect = "Stomach"; // Replace this with user selection from Smart Select
+            var bsID = bsIndexArray.indexOf(bsSelect);
+            var symptArr = [];
+            $.each(symptoms, function(i, symptObj) {
+                if (symptObj.BSArr.indexOf(bsID) !== -1) {
+                    symptArr.push(symptObj.Name);
+                }
+            });
+            console.log(symptArr); // This array will be the response needed for the next Smart Select
         }   
     }
 
     //Functions to be called when page loads
     usrComplaint.setup();
+    usrComplaint.symptSelect(); // Change this to respond to user selection   
 });

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#2196f3">
+    
+    <!-- Your app title -->
+    <title>Trivia game</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    <link rel="stylesheet" href="assets/css/framework7.min.css">
+    <link rel="stylesheet" href="assets/css/framework7-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <div class='views'>
+        <div class="view view-main">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div id="navTitle">Trivia Game</div>
+                </div>
+            </div>
+            <div class="pages navbar-through">
+                <div data-page='main' class="page">
+                    <div class="page-content">
+                        <div class="container" id="slctDtls">
+                            <div class="content-block-title">Select Game Details</div>
+                            <div class="card" id="cardDetails">
+                                <div class="card-content">
+                                    <form class="list store-data" id="myForm">
+                                        <div class="list-group inset">
+                                            <ul> 
+                                                <li>
+                                                    <a class="item-link smart-select" id="qSelect">
+                                                        <select name="amount" id='qOptions'>
+                                                            <!-- dynamically place options with js -->
+                                                        </select>
+                                                        <div class="item-content">
+                                                            <div class="item-inner">
+                                                                <div class="item-title"># of Questions</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>                                       
+                                                <li>
+                                                    <a class="item-link smart-select" id="ctgSelect">
+                                                        <select name="category" id='ctgOptions'>
+                                                            <!-- dynamically place options with js -->
+                                                        </select>
+                                                        <div class="item-content">
+                                                            <div class="item-inner">
+                                                                <div class="item-title">Category</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="item-link smart-select" id="dSelect">
+                                                        <select name="difficulty" id='dOptions'>
+                                                            <!-- dynamically place options with js -->
+                                                        </select>
+                                                        <div class="item-content">
+                                                            <div class="item-inner">
+                                                                <div class="item-title">Difficulty</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="card-footer no-hairlines" id="sBtnHolder">
+                                    <button class="col button button-fill button-round" 
+                                        id="btnStart">Start Game</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" id="qSection" hidden>
+                            <div class="block-title" id="qSum"></div>
+                            <div class="content-block-title" id="qHolder"></div>
+                            <div class="card" id="cardDetails">
+                                <div class="card-content">
+                                    <div class="list">
+                                        <ul>
+                                            <li>
+                                                <a href="#" class="item-link list-button ansBtn oddBtn" id="ans1">Button 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="item-link list-button ansBtn evenBtn" id="ans2">Button 2</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="item-link list-button ansBtn oddBtn" id="ans3">Button 3</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="item-link list-button ansBtn evenBtn" id="ans4">Button 4</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>  
+                            </div>                            
+                        </div>
+                        <div class="container" id="timeANDsum" hidden>                        
+                            <div class="card" id="timerDiv">
+                                <div class="card-content" id="timerContent">                                                                      
+                                    <div class="row">
+                                        <p id="sumTitle">Time Remaing:</p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-100 tablet-50">                                        
+                                            <div class="list no-hairlines no-hairlines-between">
+                                                <ul>
+                                                    
+                                                    <li>
+                                                        <div class='item-content'>                                                        
+                                                            <h1 id='timeDiv'>:30</h1>
+                                                            <a href="#" class="item-link list-button ansBtn evenBtn" 
+                                                                id="newGame" hidden>New Game</a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-100 tablet-50">
+                                            <div class="list">
+                                                <ul>
+                                                    <li>
+                                                        <div class="item-content">
+                                                            <div class="item-media"><i class="f7-icons">check_round_fill</i></div>
+                                                            <div class="item-inner">
+                                                                <div class="item-title">Correct Answers</div>
+                                                                <div class="item-after" id="right">0</div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="item-content">
+                                                            <div class="item-media"><i class="f7-icons">close_round_fill</i></div>
+                                                            <div class="item-inner">
+                                                                <div class="item-title">Incorrect Answers</div>
+                                                                <div class="item-after" id="wrong">0</div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="item-content">
+                                                            <div class="item-media"><i class="f7-icons">time_fill</i></div>
+                                                            <div class="item-inner">
+                                                                <div class="item-title">Unanswered</div>
+                                                                <div class="item-after" id="timeX">0</div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sheet-modal my-sheet">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+            <div class="left"></div>
+            <div class="center" id='modalTitle'></div>
+            <div class="right"><!-- <a class="link sheet-close" href="#">Done</a> --></div>
+            </div>
+        </div>
+        <div class="sheet-modal-inner">
+            <div class="block">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac diam ac quam euismod porta vel a nunc. Quisque sodales scelerisque est, at porta justo cursus ac.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/framework7.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script type="text/javascript" src="assets/javascript/config.js"></script>
+  </body>
+</html>

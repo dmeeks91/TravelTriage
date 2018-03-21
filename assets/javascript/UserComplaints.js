@@ -49,12 +49,8 @@ var usrComplaint = {
         $.each(bsIndexArray, function(key, value){
             obj = { Name: value, ID: key }; //bodySystem objTemplate
             bodySystems.push(obj);
-            $('.bodysystems') //populates body system smart-select
-            .append($("<option></option>")
-            .attr("value", key)
-            .text(value)); 
+            $('.bodysystems').append(`<option value=${key}>${value}</option>`); 
         });  
-        console.log('Body Systems Array:');
     },
     //Function to dynamically populate symptoms Array
     fillSympt: function() {
@@ -71,8 +67,7 @@ var usrComplaint = {
                 if (bsIndx != -1)
                 {
                     thisBSArr.push(bsIndx);
-                    console.log(thisBSArr)
-                        
+                    //console.log(thisBSArr)                        
                 }
                 else
                 {
@@ -83,15 +78,15 @@ var usrComplaint = {
 
             obj = {
                      Name: value.name,
-                    ID: key,
+                     ID: key,
                      BSArr: thisBSArr
                  }//symptom objTemplate
 
             symptoms.push(obj);        
         });
 
-         console.log('Symptoms Array:');
-         console.log(symptoms);
+         //console.log('Symptoms Array:');
+         //console.log(symptoms);
     },
     //Function to check if an object already exists in an array
     isInArray: function(arr, obj)
@@ -99,11 +94,11 @@ var usrComplaint = {
          /* At this point I think this function is a nice to have. for the time being just make sure that 
          neither of the global index arrays have duplicate values manually I can forsee duplicates causing issues */
     },
-        //Function to initiate setup. At this point it is only setting up the global variables
+    //Function to initiate setup. At this point it is only setting up the global variables
     setup: function(){
         this.fillBS();
         this.fillSympt();
-     },
+     },    
     symptSelect: function(){
           $('select[name="bodysystems"]').change(function() {
          var selectedBS = $('select[name="bodysystems"] option:selected').text(); // gets name of bodysystem selected
@@ -113,7 +108,7 @@ var usrComplaint = {
           $.each(symptoms, function(i, symptObj) {
              if (symptObj.BSArr.indexOf(bsID) !== -1) {
                  symptArr.push(symptObj.Name);
-                 console.log(symptObj)
+                 //console.log(symptObj)
              }
 
          if (maxAppend === 2) return; //limits only 1 symptom dropdown created
@@ -132,7 +127,7 @@ var usrComplaint = {
          maxAppend++;
          $("#symptomdropdown").append(symptomDropdown) //appends symptom dropdown once body system is selected
      }) 
-        console.log(symptArr); // This array will be the response needed for the next Smart Select
+        //console.log(symptArr); // This array will be the response needed for the next Smart Select
      })
  }
 }

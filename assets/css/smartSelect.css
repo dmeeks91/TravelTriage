@@ -14,6 +14,11 @@
     font-size: 16px;
 }
 
+#bSHolder{
+    width: 95%;
+    margin: auto;
+}
+
 .bSCard{
     margin-top: 5% !important;
     box-shadow: 1px 3px rgba(89, 16, 16, 0.12), 0 1px 2px rgba(181, 17, 17, 0.24)!important;

@@ -29,61 +29,54 @@
 
 </head>
 <body>
-  <div id="app">
-    <!-- Status bar overlay for fullscreen mode-->
-    <div class="statusbar"></div>
-
-
-   
-    
-
-    <!-- Your main view, should have "view-main" class -->
-    <div class="view view-main ios-edges">
-      <!-- Page, data-name contains page name which can be used in callbacks -->
-      <div class="page" data-name="home">
-
-        
-        <!-- Top Navbar -->
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="title">Travel Triage</div>
+  <body>
+    <div id="app">
+      <!-- Status bar overlay for fullscreen mode-->
+      <div class="statusbar"></div>
+  
+      <!-- Your main view, should have "view-main" class -->
+      <div class="view view-main ios-edges">
+        <!-- Page, data-name contains page name which can be used in callbacks -->
+        <div class="page" data-name="home">
+  
+          <!-- Top Navbar -->
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">Travel Triage</div>
+            </div>
           </div>
-        </div>
-
-
-       
-        <!-- Scrollable page content-->
-        <div class="page-content">
-          
-          <div class="begone">
-            <div class="block-title">Symptoms</div>
-            <div class="list inline-labels no-hairlines-md">
-              <form id="my-form" class="list-block form-store-data">
+  
+          <div class="block-title" id="bs-title">Body Systems</div>
+          <div class="list" id="bs-select">
+            <form name="#my-form">
               <ul>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label" id="item-title">&#8226;</div>
-                    <div class="item-input-wrap">
-                      <input type="text" class="symptoms" name="body-system">
-                      <span class="input-clear-button"></span>
+                <!-- Smart select item -->
+                <li>
+                  <!-- Additional "smart-select" class -->
+                  <a href="#" class="item-link smart-select" data-close-on-select="true">
+                    <!-- select -->
+                    <select name="bodysystems" class="bodysystems">
+                      <option id="bodyfiller" value="" selected disabled></option>
+                      <!-- workaround to keep first option from initializng -->
+  
+                    </select>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <!-- Select label -->
+                        <div class="item-title">Body Systems</div>
+                        <!-- Selected value, not required -->
+                        <div class="item-after"></div>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </li>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label" id="item-title">&#8226;</div>
-                    <div class="item-input-wrap">
-                      <input type="text" class="symptoms">
-                      <span class="input-clear-button"></span>
-                    </div>
-                  </div>
-                </li> <div id="add-more"></div>
-                <i class="f7-icons" id="plus">add_round_fill</i>
+                <ul id="symptomdropdown">
+  
+                </ul>
+                <!-- Another smart selects or list view elements -->
               </ul>
-            </form>
           </div>
-
-          <div class="block-title" id = "language-title">Translate to what language?</div>
+  
           <div class="list" id="language-select">
             <ul>
               <!-- Smart select item -->
@@ -98,7 +91,7 @@
                   <div class="item-content">
                     <div class="item-inner">
                       <!-- Select label -->
-                      <div class="item-title">Choose a Language</div>
+                      <div class="item-title">Translate to what language</div>
                       <!-- Selected value, not required -->
                       <div class="item-after"></div>
                     </div>
@@ -108,48 +101,29 @@
               <!-- Another smart selects or list view elements -->
             </ul>
           </div>
-
-          <div class="block-title">Location (optional)</div>
-          <div class="list inline-labels no-hairlines">
-            <form id="my-form" class="list-block">
-                <div class="item-inner">
-                  <div class="item-title item-label" id="item-title"></div>
-                  <div class="item-input-wrap">
-                    <input type="text" class="location">
-                    <span class="input-clear-button"></span>
-                  </div>
-                </div>
-              </form>
-            </div>
-
+  
+          <!-- Scrollable page content-->
           <input type="submit" class="button" value="Submit" id="submit">
+  
+          </form>
+  
+          <div id="results"></div>
+  
         </div>
-
-
-
-       
-          <div>
-            <ul id="translated"></div>
-              
-            </ul>
-
-
-          </div>
-
- 
-        <div id="map"></div>
-
-
-
-
-
-
   
-  </div>
-  </div>
-  </div>
+        <div>
+          <ul id="translated">
+        </div>
   
-
+        </ul>
+  
+      </div>
+  
+      <div id="map"></div>
+  
+    </div>
+    </div>
+    </div>
   <!-- Framework7 library -->
 
 

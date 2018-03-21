@@ -1,0 +1,45 @@
+.navbar{
+    background: red !important;
+}
+.title{
+    width: 100% !important;
+    text-align: center !important;
+}
+.item-after{
+    text-align: right;
+}
+
+.item-title{
+    width: 60%;
+    font-size: 16px;
+}
+
+.bSCard{
+    margin-top: 5% !important;
+    box-shadow: 1px 3px rgba(89, 16, 16, 0.12), 0 1px 2px rgba(181, 17, 17, 0.24)!important;
+}
+
+#addComplaint {
+    margin-left: 90%;
+    margin-top: 2%;
+}
+
+#addComplaint a{
+    height: 38px;
+    width: 38px;
+}
+.accordion-item .item-content .item-inner{
+    padding-left: 3%;
+}
+
+#bSHolder{
+    width: 95%;
+    margin: auto;
+}
+
+.accordion-item-content .card{
+    width: 90%;
+    margin: auto;
+    background: #f7f5f6;
+    margin-bottom: 1.5%;
+}

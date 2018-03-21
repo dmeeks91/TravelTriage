@@ -1,3 +1,4 @@
+    text-align: center !important;
 .navbar{
     background: red !important;
 }
@@ -30,6 +31,11 @@
 }
 .accordion-item .item-content .item-inner{
     padding-left: 3%;
+}
+
+#bSHolder{
+    width: 95%;
+    margin: auto;
 }
 
 .accordion-item-content .card{

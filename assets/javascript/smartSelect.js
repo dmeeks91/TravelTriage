@@ -87,7 +87,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         /* this.fillBS(); */
         this.fillSympt();
     }, 
-    //Create Body System Smart Select
+    //Create Body System Smart 
     createBSSS: function(){
         //hide FAB
         $('#addComplaint').hide();  
@@ -141,7 +141,10 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             }
         })
     },    
-    //Create Symptom Smart Select
+
+    //Create Symptom Smart Select I remembered we decided to go with the accordion after already wrote this
+    //It isn't being called at the moment 
+    //To see it in action uncomment the line in the onClose callback in the createBSSS method
     createSSS: function(bSIndx, sIndx){
         var self = this,
             thisBS = bodySystems[bSIndx],            
@@ -205,6 +208,8 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         $('#addComplaint').show();
 
     } 
+
+    //Still need to write code for rate page
  }
     
  $('#addComplaint').on('click', function(){

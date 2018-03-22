@@ -1,24 +1,31 @@
 var myApp = new Framework7(); 
 var $$ = Dom7; 
 
-$$("#submit").on("click",function(event){ 
+$$("#submit").on("click",function(){ 
+    // event.preventDefault(); 
  
-       var storedData = app.form.storeFormData("#myForm", data); 
+    localStorage.clear()
+
+        
+       var storedData = app.form.storeFormData("myForm"); 
        
        if(storedData) { 
           localStorage.setItem(JSON.stringify("data",storedData)); 
-        //   var lang= app.form.convertToData("#language-select"); 
+        //   $("#myForm").text(localStorage.getItem("data"))
+          console.log(localStorage);
+       
+          //   var lang= app.form.convertToData("#language-select"); 
         //   localStorage.setItem("language", lang); 
            
        } else { 
-          alert('Yet there is no stored data for this form. Please try to change any field') 
+          alert("There is no stored data for this form. Please try to change any field.") 
        } 
+
+       var complaints = $("#addComplaint").val();
+       localStorage.setItem("complaints",complaints);
+       console.log(complaints);
     }); 
- 
-        //     $$('.form-to-json').on('click', function() {   
-        //     var formData = myApp.formToJSON('#my-form');   
-        //     alert(JSON.stringify(formData));   
-        //  });   
+
  
  
     // event.preventDefault(); 

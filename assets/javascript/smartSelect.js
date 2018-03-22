@@ -105,7 +105,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             self = this,
             options = `<option value="NA" selected>Select a Body System</option>`;
         $.each(bsIndexArray, function(key, value){
-            options += `<option value=${key}>${value}</option>`;
+            options += `<option value=${value.replace(" ","_")}>${value}</option>`;
         });
         var html = `<div class="card bSCard">
                         <div class="card-content">  

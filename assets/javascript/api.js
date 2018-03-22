@@ -42,6 +42,7 @@ $('#submit').on('click', function () {
     });           
 });
 
+// Create Translation Table
 var testTrans = ['Thanks for seeing me today','Here is my problem list','Body System','Symptom','Severity','Head','Dizzy','Moderate','Head','Light-Headed','Mild/Moderate'];
 var headArr = testTrans.slice(0, 5);
 var symArr = testTrans.slice(5, testTrans.length);
@@ -50,7 +51,6 @@ var groups = symArr.map( function(e,i){
   return i%groupSize===0 ? symArr.slice(i,i+groupSize) : null; 
 })
 .filter(function(e){ return e; });
-
 
 var htmlStart = `<div class="data-table data-table-init card">
   <div class="card-header">

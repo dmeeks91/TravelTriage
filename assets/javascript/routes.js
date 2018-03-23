@@ -4,21 +4,12 @@ routes = [
     url: './index.html',
   },
   {
-    path: '/about/',
-    url: '/pages/about.html',
+    path: '/rate/:sVal/:sID/:sCmtID/',
+    componentUrl: './assets/pages/rate.html',
   },
   {
-    path: '/form/',
-    url: './pages/form.html',
-  },
-  // Page Loaders & Router
-  {
-    path: '/page-loader-template7/:user/:userId/:posts/:postId/',
-    templateUrl: './pages/page-loader-template7.html',
-  },
-  {
-    path: '/page-loader-component/:user/:userId/:posts/:postId/',
-    componentUrl: './pages/page-loader-component.html',
+    path: '/page-loader-component/:formID/:formVal/:r8ID/:postId/',
+    componentUrl: './assets/pages/page-loader-component.html',
   },
   // Default route (404 page). MUST BE THE LAST
   {

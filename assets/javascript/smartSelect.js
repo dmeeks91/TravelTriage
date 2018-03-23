@@ -28,6 +28,40 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         {name: 'Urinary Problems', bSArr:['General Feeling','Stomach']},
         {name: 'Weak', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']}
     ],
+    languages = [
+        {name: 'Azerbaijan', value: 'az'}, {name: 'Albanian', value: 'sq'}, {name: 'Amharic', value: 'am'}, 
+        {name: 'English', value: 'en'}, {name: 'Arabic', value: 'ar'}, {name: 'Armenian', value: 'hy'}, 
+        {name: 'Afrikaans', value: 'af'}, {name: 'Basque', value: 'eu'}, {name: 'Bashkir', value: 'ba'}, 
+        {name: 'Belarusian', value: 'be'}, {name: 'Bengali', value: 'bn'}, {name: 'Burmese', value: 'my'}, 
+        {name: 'Bulgarian', value: 'bg'}, {name: 'Bosnian', value: 'bs'}, {name: 'Catalan', value: 'ca'}, 
+        {name: 'Cebuano', value: 'ceb'}, {name: 'Chinese', value: 'zh'}, {name: 'Croatian', value: 'hr'}, 
+        {name: 'Czech', value: 'cs'}, {name: 'Danish', value: 'da'}, {name: 'Dutch', value: 'nl'}, 
+        {name: 'Estonian', value: 'et'}, {name: 'Esperanto', value: 'eo'}, {name: 'English', value: 'en'}, 
+        {name: 'Finnish', value: 'fi'}, {name: 'French', value: 'fr'}, {name: 'Galician', value: 'gl'}, 
+        {name: 'Georgian', value: 'ka'}, {name: 'German', value: 'de'}, {name: 'Greek', value: 'el'}, 
+        {name: 'Gujarati', value: 'gu'}, {name: 'Haitian (Creole)', value: 'ht'}, {name: 'Hebrew', value: 'he'}, 
+        {name: 'Hill Mari', value: 'mrj'}, {name: 'Hindi', value: 'hi'}, {name: 'Hungarian', value: 'hu'}, 
+        {name: 'Icelandic', value: 'is'}, {name: 'Indonesian', value: 'id'}, {name: 'Irish', value: 'ga'},
+        {name: 'Italian', value: 'it'}, {name: 'Japanese', value: 'ja'}, {name: 'Javanese', value: 'jv'}, 
+        {name: 'Kannada', value: 'kn'}, {name: 'Kazakh', value: 'kk'}, {name: 'Khmer', value: 'km'}, 
+        {name: 'Korean', value: 'ko'}, {name: 'Kyrgyz', value: 'ky'}, {name: 'Laotian', value: 'lo'}, 
+        {name: 'Latin', value: 'la'}, {name: 'Latvian', value: 'lv'}, {name: 'Lithuanian', value: 'lt'}, 
+        {name: 'Luxembourgish', value: 'lb'}, {name: 'Malagasy', value: 'mg'}, {name: 'Malay', value: 'ms'}, 
+        {name: 'Malayalam', value: 'mi'}, {name: 'Maltese', value: 'mt'}, {name: 'Macedonian', value: 'mk'}, 
+        {name: 'Maori', value: 'ml'}, {name: 'Marathi', value: 'mr'}, {name: 'Mari', value: 'mhr'},
+        {name: 'Mongolian', value: 'mn'}, {name: 'Nepali', value: 'ne'}, {name: 'Norwegian', value: 'no'},
+        {name: 'Papiamento', value: 'pap'}, {name: 'Persian', value: 'fa'}, {name: 'Polish', value: 'pl'},
+        {name: 'Portuguese', value: 'pt'}, {name: 'Punjabi', value: 'pa'}, {name: 'Romanian', value: 'ro'},
+        {name: 'Russian', value: 'ru'}, {name: 'Scottish', value: 'gd'}, {name: 'Serbian', value: 'sr'},
+        {name: 'Sinhala', value: 'si'}, {name: 'Slovakian', value: 'sk'}, {name: 'Slovenian', value: 'sl'},
+        {name: 'Spanish', value: 'es'}, {name: 'Swahili', value: 'sw'}, {name: 'Swedish', value: 'sv'},
+        {name: 'Sundanese', value: 'su'}, {name: 'Tagalog', value: 'tl'}, {name: 'Tajik', value: 'tg'},
+        {name: 'Tamil', value: 'sl'}, {name: 'Tatar', value: 'tt'}, {name: 'Telugu', value: 'te'},
+        {name: 'Thai', value: 'th'}, {name: 'Turkish', value: 'tr'}, {name: 'Udmurt', value: 'udm'},
+        {name: 'Ukrainian', value: 'uk'}, {name: 'Urdu', value: 'ur'}, {name: 'Uzbek', value: 'uz'},
+        {name: 'Vietnamese', value: 'vi'}, {name: 'Welsh', value: 'cy'}, {name: 'Xhosa', value: 'xh'},
+        {name: 'Yiddish', value: 'yi'}, 
+    ],
     bodySystems = [
     ],
     //UserComplaint Object this will house all the properties and methods concerning the userComplaint
@@ -75,7 +109,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                             </div>
                         </div>`; 
 
-            $('#bSHolder').append(html);   
+          $('#bSHolder').append(html);   
             
             app.smartSelect.create({
                 closeOnSelect: true,

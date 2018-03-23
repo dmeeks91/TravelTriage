@@ -1,3 +1,4 @@
+
 var formBS = [];
 
 $('#submit').on('click', function () { //function that translates when submit is clicked

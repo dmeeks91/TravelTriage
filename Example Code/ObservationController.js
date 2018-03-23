@@ -435,7 +435,6 @@
                                     '</div>' +
                                 '</div>';
                  }
-
                  deferred.resolve(htmlStart + htmlMid + htmlEnd);
 
                  return deferred.promise;

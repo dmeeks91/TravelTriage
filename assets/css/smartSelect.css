@@ -13,6 +13,7 @@
 .item-title{
     width: 60%;
     font-size: 16px;
+    color: #8e8e93;
 }
 
 .item-content .card-content {
@@ -28,7 +29,7 @@
 .md .badge,
 .ios .badge,
 span.badge {
-    font-size: 13px;
+    font-size: 18px;
     border-radius: 20px;
     padding: 0 6px;
     height: 20px;
@@ -42,29 +43,22 @@ span.badge {
     margin-top: 10%;
 }
 
-.r8Card {
-    height: 45px;
+.r8Content{
+    margin: auto;
+    padding-left: 2%; 
 }
 
-.r8Card .row,
-.r8Col {
-    height: 100%;
+.r8Card .card-header p {
+    margin: unset;
+    text-align: center;
     width: 98%;
     margin: auto;
-    font-size: 18px;
-    color: #ae9c9c;
+    font-size: 250%;
+    font-weight: bold;
+    color: #8e8e93;
 }
 
-.row .col-40.r8Col {
-    text-align: right;
-    padding-right: 3%;
-}
-
-.r8Col {
-    padding-top: 3%;
-}
-
-.bSCard{
+.bSCard, .r8Card{
     height: unset;
     margin: 5%;
     box-shadow: 1px 3px red, 0 1px 2px gray!important;
@@ -107,6 +101,12 @@ span.badge {
     max-width: 850px;
 }
 
+#transDisplay {
+    width: 98%;
+    margin: auto;
+    max-width: 1500px;
+}
+
 .indent {
     width: 95%;
     margin-left: auto;
@@ -119,4 +119,18 @@ span.badge {
 
 .accordion-item.accordion-item-opened {
     padding-bottom: 3%;
+}
+
+.btnHolder {
+    width: 90%;
+    margin: auto;
+    margin-top: 3%;
+}
+
+button {
+    padding: 1%;
+    width: 100%;
+    border-radius: 5px;
+    background: #ff0000d9;
+    color: white;
 }

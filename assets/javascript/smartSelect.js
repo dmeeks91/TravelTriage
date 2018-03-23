@@ -139,7 +139,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}"> 
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}_Cmt">  
                                         <a class="item-link item-content" 
-                                            href="/rate/${thisBS.slctID}_s${sIndx}/${obj.name}">                                        
+                                            href="/ratePage/${obj.name.toUpperCase()}/bs0_s1/bs0_s1_Cmt/">                                        
                                             <div class="card-content">
                                                 <div class="item-inner"> 
                                                     <div class="item-title">                                               

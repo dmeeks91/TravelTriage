@@ -1,24 +1,32 @@
 var myApp = new Framework7();
 var $$ = Dom7;
-var lang= app.form.convertToData("#language-select");
+
 
 $$("#submit").on("click",function(event){
 
        var storedData = app.form.getFormData('#my-form');
        if(storedData) {
           localStorage.setItem(JSON.stringify("data",storedData));
-          var lang= app.form.convertToData("#language-select");
-          localStorage.setItem("language", lang);
-          
        } else {
           alert('Yet there is no stored data for this form. Please try to change any field')
        }
     });
 
-        //     $$('.form-to-json').on('click', function() {  
-        //     var formData = myApp.formToJSON('#my-form');  
-        //     alert(JSON.stringify(formData));  
-        //  });  
+    // $$('.delete-storage-data').on('click', function() {
+    //    var storedData = myApp.formDeleteData('myform');
+    //    alert('Form data is deleted')
+    // });
+
+    // $$('.save-storage-data').on('click', function() {
+    //    var storedData = myApp.formStoreData('myform', {
+    //       'name': 'William Smith',
+    //       'email': 'williamsmith@tutorialspoint.com',
+    //       'gender': 'male',
+    //       'switch': ['yes'],
+    //    });
+    //    alert('Form data is replaced, refresh the browser to reflect the changes')
+    // });
+
 
 
     // event.preventDefault();

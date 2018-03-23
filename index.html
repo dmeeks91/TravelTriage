@@ -70,14 +70,21 @@
                     </div>
                   </a>
                 </li>
-                <ul id="symptomdropdown">
-  
-                </ul>
-                <!-- Another smart selects or list view elements -->
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label" id="item-title">&#8226;</div>
+                    <div class="item-input-wrap">
+                      <input type="text" class="symptoms" name="body-system">
+                      <span class="input-clear-button"></span>
+                    </div>
+                  </div>
+                </li> <div id="add-more"></div>
+                <i class="f7-icons" id="plus">add_round_fill</i>
               </ul>
           </div>
-  
-          <div class="list" id="language-select">
+
+          <div class="block-title" id = "language-title">Translate to what language?</div>
+          <div class=" form-store data list" id="language-select">
             <ul>
               <!-- Smart select item -->
               <li>
@@ -101,8 +108,20 @@
               <!-- Another smart selects or list view elements -->
             </ul>
           </div>
-  
-          <!-- Scrollable page content-->
+
+          <div class="block-title">Location (optional)</div>
+          <div class="list inline-labels no-hairlines">
+            <form id="my-location" class="form-store-data list-block">
+                <div class="item-inner">
+                  <div class="item-title item-label" id="item-title"></div>
+                  <div class="item-input-wrap">
+                    <input type="text" class="location" name="location">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </form>
+            </div>
+
           <input type="submit" class="button" value="Submit" id="submit">
   
           </form>
@@ -136,6 +155,7 @@
   <!-- Your custom app scripts -->
   <script src="assets/javascript/api.js"></script>
   <script src="assets/javascript/UserComplaints.js"></script>
+  <script src="assets/javascript/dataStorage.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLE_qtyY-8jVFKwfvsEvmSoLD_FVPyvRU&libraries=places" async defer></script>
 
 </body>

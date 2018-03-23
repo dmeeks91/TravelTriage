@@ -15,8 +15,7 @@ $('#submit').on('click', function () { //function that translates when submit is
         console.log(formBS)
     } 
       var test = selectedIndex
-      
- 
+        
   var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
   + formBS + "&lang=" + "en" + "-" + "es" + "&format=plain"
     $.ajax({

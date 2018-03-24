@@ -65,6 +65,11 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
     bodySystems = [
     ],
     lngSSExists = false,
+    user = {
+        name:"",
+        location:"",
+        language:"",
+    }
     //UserComplaint Object this will house all the properties and methods concerning the userComplaint
     usrComplaint = {
         //Create Body System Smart Select
@@ -132,7 +137,6 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 }
             });
         },
-
         //Create Symptom Accordian
         createSAcrdn: function(bSIndx){
             var sItems = "",
@@ -211,8 +215,16 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                     }
                 }
             });
+        },        
+        setUser: function() {
+            var form = app.form.convertToData('#myInfo');
+            user.name = form.Name;
+            user.location = form.Location;
+            user.language = form.Language;
         }
     }
+
+    
     
 
 

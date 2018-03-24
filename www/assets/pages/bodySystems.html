@@ -40,7 +40,7 @@
                     </div>
                 </form>
                 <div class="fab" id="addComplaint">
-                    <a href="#">
+                    <a @click="addBSSS">
                     <i class="icon f7-icons">add</i>
                     </a>
                 </div>
@@ -53,6 +53,11 @@
 </template>
 <script>
     return {
+        methods: {
+            addBSSS: function(){
+                usrComplaint.createBSSS();
+            }
+        },
         data: function() {
             return {
             }

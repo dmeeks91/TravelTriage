@@ -80,7 +80,27 @@
                 {
                     usrComplaint.createLngSS();
                 }
-            }
+            },
+            pageMounted: function(e, page) {
+                console.log('pageMounted', page);
+            },
+            pageInit: function(e, page) {
+                console.log('pageInit', page);
+            },
+            pageAfterIn: function(e, page) {
+                console.log('pageAfterIn', page);
+            },
+            pageBeforeOut: function(e, page) {
+                usrComplaint.setUser();
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function(e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function(e, page) {
+                usrComplaint.setUser();
+                console.log('pageBeforeRemove', page);
+            },
         }
     }
 </script>

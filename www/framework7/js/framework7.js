@@ -1,5 +1,5 @@
 /**
- * Framework7 2.1.1
+ * Framework7 2.1.3
  * Full featured mobile HTML framework for building iOS & Android apps
  * http://framework7.io/
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: March 17, 2018
+ * Released on: March 19, 2018
  */
 
 (function (global, factory) {
@@ -2457,6 +2457,8 @@ function bezier (mX1, mY1, mX2, mY2) {
   };
 }
 
+/* eslint no-control-regex: "off" */
+
 // Remove Diacritics
 var defaultDiacriticsRemovalap = [
   { base: 'A', letters: '\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F' },
@@ -4830,8 +4832,8 @@ var tempDom = doc.createElement('div');
 var Framework7Component = function Framework7Component(opts, extendContext) {
   if ( extendContext === void 0 ) extendContext = {};
 
-  var component = Utils.merge(this, extendContext, { $options: opts });
-  var options = component.$options;
+  var options = Utils.extend({}, opts);
+  var component = Utils.merge(this, extendContext, { $options: options });
 
   // Apply context
   ('beforeCreate created beforeMount mounted beforeDestroy destroyed').split(' ').forEach(function (cycleKey) {

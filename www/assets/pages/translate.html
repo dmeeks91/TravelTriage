@@ -34,7 +34,13 @@
         </div>   
         <div class="page-content">
             <div class="container" id="transDisplay">
-            </div>               
+            </div>    
+            <div id="mapblock"> 
+                <div id = "map">  
+                </div> 
+                </div> 
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnghntSOf7EteeY_c8Ngej65kyVoktDp0&libraries=places" async defer></script>           
+            </div>            
         </div>
     </div>
 </template>
@@ -46,11 +52,12 @@
         },
         on: {
             pageBeforeIn: function(e,page) {
-                //createTrsl8Table();
+                // createTrsl8Table();
+                translateResults();
                 console.log(user.location);
                 console.log(user.language);
-
-            }
+                testCoord();
+            },
         }
     }
 </script>

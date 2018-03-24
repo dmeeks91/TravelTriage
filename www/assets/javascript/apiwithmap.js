@@ -4,14 +4,14 @@ function initMap(lat, lng) {
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: pyrmont,
-    zoom: 15
+    zoom: 12
   });
 
   infowindow = new google.maps.InfoWindow();
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: pyrmont,
-    radius: 500,
+    radius: 8000,
     type: ['hospital']
   }, callback);
 }
@@ -30,6 +30,7 @@ function createMarker(place) {
     map: map,
     position: place.geometry.location
   });
+
 
   google.maps.event.addListener(marker, 'click', function() {
     infowindow.setContent(place.name);
@@ -77,21 +78,20 @@ function createMarker(place) {
 
 // }
 
-//     var userlocation = $("input.location[type=text]").val()
-//     var googleCoord = "https://maps.googleapis.com/maps/api/geocode/json?address=" + userlocation + "&key=AIzaSyCnghntSOf7EteeY_c8Ngej65kyVoktDp0"
 
-//     $.ajax({
-//       url: googleCoord,
-//       method: "GET"
-//     }).then(function(responseG) {
-//       var lat = responseG.results[0].geometry.location.lat
-//       var lng = responseG.results[0].geometry.location.lng
-//       console.log(lat)
-//       console.log(lng) 
-//     console.log(userlocation)
-//     console.log(googleCoord)
-
-
+function testCoord () {
+    var googleCoord = "https://maps.googleapis.com/maps/api/geocode/json?address=" + user.location + "&key=AIzaSyCnghntSOf7EteeY_c8Ngej65kyVoktDp0"
+    console.log(googleCoord)
+    console.log(user.location)
+    $.ajax({
+      url: googleCoord,
+      method: "GET"
+    }).then(function(responseG) {
+      var lat = responseG.results[0].geometry.location.lat
+      var lng = responseG.results[0].geometry.location.lng
+      initMap(lat,lng);
+    })
+}
 
   
 //     $(".begone").html(" ")
@@ -157,3 +157,4 @@ function createMarker(place) {
 
 // console.log(bsIndexArray)
 // console.log(symIndexArray)
+

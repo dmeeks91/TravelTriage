@@ -1,0 +1,86 @@
+<template></template>
+    <div class="page" data-name="usrInfo">
+        <div class="navbar">  
+            <div class="navbar-inner">
+                <div class="left"></div>
+                <div class="title">Travel Triage</div>
+                <div class="right"></div> 
+            </div>
+        </div>
+        <div class="toolbar subTitle">
+            <div class="toolbar-inner ">
+                <div class="left"></div>
+                <div class="title">Welcome</div>
+                <div class="right"></div>
+            </div>
+        </div>  
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#view-home" class="tab-link tab-link-active">
+                    <span class="tabbar-label">Step 1</span>
+                </a>
+                <a href="#view-catalog" class="tab-link">
+                    <span class="tabbar-label">Step 2</span>
+                </a>
+                <a href="#view-settings" class="tab-link">
+                    <span class="tabbar-label">Step 3</span>
+                </a>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block-title">
+                Basic Info
+            </div>
+            <div class="card" id="usrCard">
+                <div class="container card-content" id="userInfo">
+                    <form class="list store-data" id="myInfo">
+                        <div class="list inline-labels no-hairlines-md">
+                            <ul>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Name</div>
+                                        <div class="item-input-wrap">
+                                            <input name="Name" type="text" id="userName" placeholder="Your name">
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item-content item-input">
+                                    <div class="item-inner">
+                                        <div class="item-title item-label">Current Location</div>
+                                        <div class="item-input-wrap">
+                                            <input name="Location" type="text" placeholder="Country, State, City etc.">
+                                            <span class="input-clear-button"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="lngSSHolder">
+
+                                </li>
+                            </ul>
+                        </div>  
+                    </form>
+                </div>
+                <div class="card-footer no-hairlines">
+                    <a class="button button-fill btnNext" href="/bSList/name/">Next</a>
+                </div>
+            </div>                                           
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function() {
+            return {
+            }
+        },
+        on: {
+            pageBeforeIn: function(e,page) {
+                if (!lngSSExists)
+                {
+                    usrComplaint.createLngSS();
+                }
+            }
+        }
+    }
+</script>

@@ -134,3 +134,48 @@ button {
     background: #ff0000d9;
     color: white;
 }
+.navbar {
+    height: 10%
+}
+.left,
+.right {
+    width: 10%;
+}
+#usrCard {
+    width: 90%;
+    margin: auto;
+}
+
+.btnNext {
+    margin-left:auto;
+}
+
+.lngInput .item-after {
+    text-align: left;
+    width: 100%;
+    margin-left: 1%;
+    font-size: 115% !important;
+}
+
+.item-input-wrap input {
+    font-size: 115% !important;
+    color: #ff0000a3 !important;
+}
+
+.smart-select.notSlctd .item-after,
+.lngInput.notSlctd .item-after {
+    color: #c5bdbd !important;
+}
+
+.toolbar.subTitle {
+    background: #2196f3;
+    height: 5%;
+    color: #fff;
+    font-size: 14px;
+    min-height: 22px;
+    top: 0;
+}
+.toolbar.tabbar {
+    top: 92%;
+    height: 8%;
+}

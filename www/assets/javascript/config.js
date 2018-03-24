@@ -7,10 +7,6 @@ var app  = new Framework7({
     id: 'io.framework7.testapp', // App bundle ID
     name: 'Framework7', // App name
     theme: 'auto', // Automatic theme detection
-    smartSelect: {
-        openIn: 'popover',
-        closeOnSelect: true,
-    },
     data: function () {
         return {
           user: {
@@ -25,6 +21,7 @@ var app  = new Framework7({
             app.dialog.alert('Hello World!');
         },
     },
+    
     // App routes
     routes: routes,
 });

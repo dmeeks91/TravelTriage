@@ -1,0 +1,27 @@
+#wPage{
+    height: 100%;
+}
+#wLogo{
+    margin: auto;
+}
+
+#wBtn 
+{
+    width: 60%;
+    margin: auto;
+    background-color: #d32516;
+    margin-top: -6%;
+    box-shadow: 1px 2px 4px #013e7d;
+}
+
+#bSBtn
+{
+    width: 60%;
+    margin: auto;
+    background-color:#ff0000;
+    box-shadow: 1px 2px 4px #013e7d;
+}
+
+img{
+    width: 100%;
+}

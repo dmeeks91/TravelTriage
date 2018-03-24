@@ -1,0 +1,53 @@
+<template>
+    <div class="page" data-name="bSList">
+        <div class="navbar">  
+            <div class="navbar-inner">
+                <div class="left">
+                    <a class="link" href="/bSList/me/">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Travel Triage</div>
+                <div class="right"></div> 
+            </div>
+        </div>
+        <div class="toolbar subTitle">
+            <div class="toolbar-inner ">
+                <div class="left"></div>
+                <div class="title">Take this with you to the Doctor</div>
+                <div class="right"></div>
+            </div>
+        </div>  
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#view-home" class="tab-link">
+                    <span class="tabbar-label">Step 1</span>
+                </a>
+                <a href="#view-catalog" class="tab-link">
+                    <span class="tabbar-label">Step 2</span>
+                </a>
+                <a href="#view-settings" class="tab-link tab-link-active">
+                    <span class="tabbar-label">Step 3</span>
+                </a>
+            </div>
+        </div>   
+        <div class="page-content">
+            <div class="container" id="transDisplay">
+            </div>               
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function() {
+            return {
+            }
+        },
+        on: {
+            pageBeforeIn: function(e,page) {
+                createTrsl8Table();
+            }
+        }
+    }
+</script>

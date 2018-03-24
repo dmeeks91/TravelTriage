@@ -1,0 +1,69 @@
+<template>
+    <div class="page" data-name="bSList">
+        <div class="navbar">  
+            <div class="navbar-inner">
+                <div class="left">
+                    <a class="link" href="/">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Travel Triage</div>
+                <div class="right"></div> 
+            </div>
+        </div>
+        <div class="toolbar subTitle">
+            <div class="toolbar-inner ">
+                <div class="left"></div>
+                <div class="title">Tell us what's wrong</div>
+                <div class="right"></div>
+            </div>
+        </div>  
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#" class="tab-link">
+                    <span class="tabbar-label">Step 1</span>
+                </a>
+                <a href="#" class="tab-link tab-link-active">
+                    <span class="tabbar-label">Step 2</span>
+                </a>
+                <a href="#" class="tab-link">
+                    <span class="tabbar-label">Step 3</span>
+                </a>
+            </div>
+        </div>                           
+        
+        <div class="page-content">
+            <div class="container" id="slctBodySystem">
+                <form class="list store-data" id="myForm">
+                    <div id="bSHolder"> 
+                    </div>
+                </form>
+                <div class="fab" id="addComplaint">
+                    <a href="#">
+                    <i class="icon f7-icons">add</i>
+                    </a>
+                </div>
+                <div class="btnHolder">
+                    <a class="button button-big button-fill"  id="bSBtn" href="/translate/3/">Submit</a>
+                </div>
+            </div>               
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function() {
+            return {
+            }
+        },
+        on: {
+            pageBeforeIn: function(e,page) {
+                if (bodySystems.length === 0)
+                {
+                    usrComplaint.createBSSS();
+                }
+            }
+        }
+    }
+</script>

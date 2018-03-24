@@ -9,8 +9,8 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         {name: 'Dry', bSArr:['General Feeling','Eye','Ear','Nose','Mouth','Neck/Throat','Chest']},
         {name: 'Fever', bSArr:['General Feeling','Head']},
         {name: 'Light-headed', bSArr:['General Feeling','Head']},
-        {name: 'Nausea/Vomiting', bSArr:['General Feeling','Stomach']},
-        {name: 'Numbness/Tingling', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Nausea, Vomiting', bSArr:['General Feeling','Stomach']},
+        {name: 'Numbness, Tingling', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Pain', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Short of Breath', bSArr:['General Feeling','Neck/Throat','Chest','Back']},
         {name: 'Sick', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
@@ -64,6 +64,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
     ],
     bodySystems = [
     ],
+    lngSSExists = false,
     //UserComplaint Object this will house all the properties and methods concerning the userComplaint
     usrComplaint = {
         //Create Body System Smart Select
@@ -91,7 +92,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                             <div class="list no-hairlines no-hairlines-between">
                                 <ul>
                                     <li>
-                                        <a href="#" class="item-link smart-select" id="${thisBS.aTagID}">
+                                        <a href="#" class="item-link smart-select notSlctd" id="${thisBS.aTagID}">
                                             <select name="${thisBS.slctID}" id="${thisBS.slctID}">
                                                 ${options}
                                             </select>
@@ -112,9 +113,14 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
           $('#bSHolder').append(html);   
             
             app.smartSelect.create({
+                openIn: 'popover',
                 closeOnSelect: true,
                 el: `#${thisBS.aTagID}`,
                 on: {
+                    close: function () {
+                        var addRemove = (this.$selectEl[0].value != "NA") ? "removeClass" : "addClass";
+                        $(`#${thisBS.aTagID}`)[addRemove]('notSlctd');    
+                    },
                     closed: function () {
                         if (this.$selectEl[0].value != "NA")
                         {
@@ -124,8 +130,9 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                         }    
                     }
                 }
-            })
+            });
         },
+
         //Create Symptom Accordian
         createSAcrdn: function(bSIndx){
             var sItems = "",
@@ -139,7 +146,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}"> 
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}_Cmt">  
                                         <a class="item-link item-content" 
-                                            href="/ratePage/${obj.name.toUpperCase()}/bs0_s1/bs0_s1_Cmt/">                                        
+                                            href="/ratePage/${thisBS.bodySystem}/${obj.name.toUpperCase()}/${thisBS.slctID}_s${sIndx}/${thisBS.slctID}_s${sIndx}_Cmt/">                                        
                                             <div class="card-content">
                                                 <div class="item-inner"> 
                                                     <div class="item-title">                                               
@@ -171,12 +178,44 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             $('.sInput').hide();
             $('#addComplaint').show();
 
-        } 
+        }, 
+        //Create language Smart Select
+        createLngSS: function() {
+            if (lngSSExists) return;
+            var options = `<option value="NA" selected>Select local language</option>`;
+            $.each(languages, function(key, lngObj){
+                options += `<option value="${lngObj.value}">${lngObj.name}</option>`;
+            });
+
+            var html = `<a href="#" class="item-link smart-select" id="lngSS">
+                            <select name="Language">
+                                ${options}
+                            </select>
+                            <div class="item-content">
+                                <div class="item-inner lngInput notSlctd">
+                                    <div class="item-title item-label">Local Language</div>
+                                </div>
+                            </div>
+                        </a>`; 
+
+            $('#lngSSHolder').append(html);
+            lngSSExists = true;
+            app.smartSelect.create({
+                closeOnSelect: true,
+                searchbar: true,
+                el: `#lngSS`,
+                on: {
+                    close: function () {
+                        var addRemove = (this.$selectEl[0].value != "NA") ? "removeClass" : "addClass";
+                        $('.lngInput')[addRemove]('notSlctd');    
+                    }
+                }
+            });
+        }
     }
     
- $('#addComplaint').on('click', function(){
-    usrComplaint.createBSSS();
- })
+
 
 //Create a body system smart select on page load
-usrComplaint.createBSSS();
+//usrComplaint.createBSSS();
+/* usrComplaint.createLngSS(); */

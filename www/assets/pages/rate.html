@@ -1,12 +1,25 @@
 <template>
     <div class="page">
-        <div class="navbar">
+        <div class="navbar">  
             <div class="navbar-inner">
-                <div class="left"></div>
-                <div class="title sliding">Rate Your Symptom</div>
-                <div class="right"></div>
+                <div class="left">
+                    <a class="link" href="/bSList/">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">Rate your Symptom</div>
+                <div class="right">
+                </div> 
             </div>
         </div>
+        <div class="toolbar subTitle">
+            <div class="toolbar-inner ">
+                <div class="left"></div>
+                <div class="title"><b>{{$route.params.bSVal}}</b></div>
+                <div class="right"></div>
+            </div>
+        </div>  
         <div class="page-content">         
             <div class="r8Card">
                 <div class="card-header">

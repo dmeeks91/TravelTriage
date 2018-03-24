@@ -8,9 +8,17 @@ var app  = new Framework7({
     name: 'Framework7', // App name
     theme: 'auto', // Automatic theme detection
     smartSelect: {
-        openIn: 'page',
+        openIn: 'popover',
         closeOnSelect: true,
     },
+    data: function () {
+        return {
+          user: {
+            firstName: 'John',
+            lastName: 'Doe',
+          },
+        };
+      },
     // App root methods
     methods: {
         helloWorld: function () {

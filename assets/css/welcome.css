@@ -1,19 +1,40 @@
-html,body{
+/* html,body{
     margin: 0;
     padding: 0;
     width:100%;
     height: 100%;
-    background-image: url(../images/travel-health.jpg);
-    background-size: cover;
-    background-position: center center;
     display: table;
+} */
+html,
+body{
+    height: 100%;
+    background-color: #86c1d3;
 }
-
-.container{
-    margin-top: 220px;
+#welcomeContainer {
+    height: 100%;
+}
+#imageHolder{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background-image: url(../images/travel-health.jpg);
+    background-size:100% auto;
+	background-repeat: no-repeat;
     text-align:center;
 }
-h1{
+
+.logo{
+    background-color: transparent;
+}
+.topRow {
+    height:60%;
+}
+.bottomRow {
+    height:40%;
+    background-color: transparent;
+    border: none;
+}
+.title{
     color: navy;
     font-family: sans-serif;
     font-weight: 300;
@@ -35,8 +56,8 @@ p {
 }
 
 .button{
-    
-    margin: 0;
+    width: 30%;
+    margin: auto;
     display: block;
     padding: 15px 25px;
     font-size: 24px;
@@ -61,11 +82,16 @@ p {
   /* box-shadow: 0 5px #666; */
   transform: translateY(4px);
 }
+.responsive-image{
+    width: 100%;
+    background-size: 100% 100%;
+} 
 
-@media(max-width: 768px){
+
+/* @media(max-width: 768px){
     body{
         background-image: url(../images/travel-health.jpg)
-    }
+    } 
     h1{
         font-size: 300%;
     }
@@ -77,4 +103,4 @@ p {
         position: relative;
 
     }
-}
+} */

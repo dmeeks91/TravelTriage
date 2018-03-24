@@ -1,30 +1,61 @@
 
 var formBS = [];
+var keyArray =[];
+var dataArray = [];
+var tableData = [];
 
 $('#submit').on('click', function () { //function that translates when submit is clicked
-  event.preventDefault();
-  var twoLetterCode = [];
-    $$('select[name="languages"] option:checked').each(function () {
-      twoLetterCode.push(this.value);
-    });     
+  // event.preventDefault();
+  // var twoLetterCode = [];
+  //   $$('select[name="languages"] option:checked').each(function () {
+  //     twoLetterCode.push(this.value);
+  //   });     
 
     
-      var selectedIndex = app.form.convertToData('#myForm')
-      console.log(selectedIndex)
-      for(var propt in selectedIndex){
-        formBS.push(bsIndexArray[selectedIndex[propt]])
-        console.log(formBS)
-    } 
+      // var selectedIndex = app.form.convertToData('#myForm')
+      // console.log(selectedIndex)
+
+      $.each(bodySystems, function(key){       
+        console.log(bodySystems[key].bodySystem)
+        formBS.push(bodySystems[key].bodySystem)
+      })
+      var formData = app.form.convertToData("#myForm");
+      keyArray =[];
+      dataArray = [];
+      tableData = [];
+      $.each(formData, function(key, value) {
+        //formData[key] = JSON.stringify(value);
+        if(value.length >0)
+        {
+          keyArray.push(key);
+          dataArray.push(value);
+        }
+      })
+      //console.log(formData);
+      var stringObject = JSON.stringify(bodySystems[0].symptoms[0]);
             
   var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
-  + formBS + "&lang=" + "en" + "-" + "es" + "&format=plain"
+  + JSON.stringify(dataArray) + "&lang=" + "en" + "-" + "es" + "&format=plain"
     $.ajax({
     url: yandex,
     method: "GET"
     }).then(function(translated) {
-    $("#results").html(translated.text)
     console.log(translated)
-    });           
+    });  
+    
+    var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
+  +JSON.stringify(dataArray) + "&lang=" + "en" + "-" + "es" + "&format=plain"
+    $.ajax({
+    url: yandex,
+    method: "GET"
+    }).then(function(translated) {
+        translatedArray = JSON.parse(translated.text[0]);
+        for (var i = 0; i < dataArray.length; i++)
+        {
+            tableData.push({type: 'BodySystem', orig: dataArray[i], new: translatedArray[i]});
+        }
+        console.log(tableData);
+    });
 });
 
 // Create Translation Table

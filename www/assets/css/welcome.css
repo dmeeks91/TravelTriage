@@ -33,7 +33,16 @@ img{
  
 #mapblock { 
     width: 100%; 
-    height: 50%; 
+    height: 100%; 
     position: fixed;
-    top: 48%;
+    right: 0.1%;
+}
+
+#map-button {
+    width: 100%;
+    text-align: center;
+}
+
+.md .block-title {
+    margin: 0;
 }

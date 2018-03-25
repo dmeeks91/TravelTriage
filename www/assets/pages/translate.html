@@ -35,12 +35,29 @@
         <div class="page-content">
             <div class="container" id="transDisplay">
             </div>    
-            <div id="mapblock"> 
-                <div id = "map">  
-                </div> 
-                </div> 
+            <div class="block-title"></div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col-100">
+                <a id="map-button" href="#" class="button button-raised button-fill popup-open" data-popup=".map-Up">Map of nearby facilities</a>
+              </div>
+            </div>
+          </div>          
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnghntSOf7EteeY_c8Ngej65kyVoktDp0&libraries=places" async defer></script>           
-            </div>            
+            </div>   
+            
+            <div class="popup map-Up">
+                <div class="block">
+                  <p>Map of nearby facilities - click to get directions</p>
+                  <!-- Close Popup -->
+                  <p><a class="link popup-close" href="#">Close</a></p>
+                  <div id="mapblock"> 
+                    <div id = "map">  
+                    </div> 
+                    </div> 
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
@@ -61,3 +78,5 @@
         }
     }
 </script>
+
+

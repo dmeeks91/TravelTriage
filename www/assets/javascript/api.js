@@ -4,7 +4,7 @@ var keyArray =[];
 var dataArray = [];
 var tableData = [];
 
-$('#submit').on('click', function () { //function that translates when submit is clicked
+// $('#bSBtn').on('click', function () { //function that translates when submit is clicked
   // event.preventDefault();
   // var twoLetterCode = [];
   //   $$('select[name="languages"] option:checked').each(function () {
@@ -15,10 +15,11 @@ $('#submit').on('click', function () { //function that translates when submit is
       // var selectedIndex = app.form.convertToData('#myForm')
       // console.log(selectedIndex)
 
-      $.each(bodySystems, function(key){       
-        console.log(bodySystems[key].bodySystem)
-        formBS.push(bodySystems[key].bodySystem)
-      })
+      // $.each(bodySystems, function(key){       
+      //   console.log(bodySystems[key].bodySystem)
+      //   formBS.push(bodySystems[key].bodySystem)
+      // })
+      function translateResults () {
       var formData = app.form.convertToData("#myForm");
       keyArray =[];
       dataArray = [];
@@ -34,17 +35,17 @@ $('#submit').on('click', function () { //function that translates when submit is
       //console.log(formData);
       var stringObject = JSON.stringify(bodySystems[0].symptoms[0]);
             
-  var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
-  + JSON.stringify(dataArray) + "&lang=" + "en" + "-" + "es" + "&format=plain"
-    $.ajax({
-    url: yandex,
-    method: "GET"
-    }).then(function(translated) {
-    console.log(translated)
-    });  
+  // var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
+  // + JSON.stringify(dataArray) + "&lang=" + "en" + "-" + user.language + "&format=plain"
+  //   $.ajax({
+  //   url: yandex,
+  //   method: "GET"
+  //   }).then(function(translated) {
+  //   console.log(translated)
+  //   });  
     
     var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
-  +JSON.stringify(dataArray) + "&lang=" + "en" + "-" + "es" + "&format=plain"
+  +JSON.stringify(dataArray) + "&lang=" + "en" + "-" + user.language + "&format=plain"
     $.ajax({
     url: yandex,
     method: "GET"
@@ -55,10 +56,8 @@ $('#submit').on('click', function () { //function that translates when submit is
             tableData.push({type: 'BodySystem', orig: dataArray[i], new: translatedArray[i]});
         }
         console.log(tableData);
-        initMap(-37, 102);
-
     });
-});
+};
 
 // Create Translation Table
 var testTrans = ['Thanks for seeing me today','Here is my problem list','Body System','Symptom','Severity','Head','Dizzy','Moderate','Head','Light-Headed','Mild/Moderate'];

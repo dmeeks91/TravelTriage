@@ -224,7 +224,8 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             user.name = form.Name;
             user.location = form.Location;
             user.language = form.Language;
-        }
+        },
+       
     }
 
     

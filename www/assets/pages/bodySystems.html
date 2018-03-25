@@ -33,7 +33,7 @@
             </div>
         </div>                           
         
-        <div class="page-content">
+        <div class="page-content bSpage">
             <div class="container" id="slctBodySystem">
                 <form class="list store-data" id="myForm">
                     <div id="bSHolder"> 
@@ -69,14 +69,8 @@
                     usrComplaint.createBSSS();
                 }
             },
-            pageBeforeOut: function(e, page) {
-                console.log('e');
-                console.log(e);
-                console.log('page');
-                console.log(page);
-            },
-            pageMounted: function(e, page) {
-                usrComplaint.upd8Bdg();
+            pageAfterIn: function(e, page) {
+                    usrComplaint.upd8Bdg();
             }
         }
     }

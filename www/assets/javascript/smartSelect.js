@@ -189,14 +189,14 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                                                         ${obj.name}
                                                     </div>
                                                     <div class="item-after">
-                                                        <span id=${thisBS.slctID}_s${sIndx}_r8 name="s${sIndx}" class="badge">NR</span>    
+                                                        <span id="${thisBS.slctID}_s${sIndx}_r8" name="s${sIndx}" class="badge">NR</span>    
                                                     </div>
                                                 </div>                                            
                                             </div>
                                         </a>
                                     </div>`
                         thisBS.symptoms.push({name:[`${obj.name}`,""],
-                                              rate:["",""], 
+                                              rate:["NR",""], 
                                               comment:["",""]});
                         sIndx = thisBS.symptoms.length;
                     }            
@@ -303,13 +303,24 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             slctdbS = bodySystems[obj.bSID];
         },
         upd8Bdg: function() {
-            $.each(bodySystems, function(key, bS){                
-                $.each(symptoms)
+            var thisR8Name = {},
+                addRemove = "",
+                $sID = {},
+                $r8ID = {};
+            $.each(bodySystems, function(bSID, bS){                
+                $.each(bS.symptoms, function (sID, sObj) {
+                    thisR8Name = sObj.rate[0];
+                    $sID = $(`#${bS.slctID}_s${sID}`);
+                    $r8ID = $(`#${bS.slctID}_s${sID}_r8`);
+                    $.each(rates, function (r8ID, r8Obj) {
+                        addRemove = (thisR8Name === r8Obj.name) ? "addClass" : "removeClass";
+                        $sID[addRemove](r8Obj.className);
+                        if (thisR8Name === r8Obj.name) $r8ID[0].textContent = r8Obj.score;
+                    })
+                })
             })
+            $(`#${slctdbS.divID} .accordion-item.indent`).addClass('accordion-item-opened');
         },
-        getR8Obj: function(r8Name) {
-            
-        }
        
     }
 

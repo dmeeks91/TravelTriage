@@ -81,7 +81,7 @@ span.badge {
 }
 .Mld .item-inner .item-after span.badge {
     background: #91be32 !important;
-    color: white;
+    color: white !important;
 }
 
 .Mld-Mdr8 .icon-radio {
@@ -92,6 +92,7 @@ span.badge {
 }
 .Mld-Mdr8 .item-inner .item-after span.badge {
     background: #e1e12e !important;
+    color: white !important;
 }
 
 .Mdr8 .icon-radio {
@@ -102,6 +103,7 @@ span.badge {
 }
 .Mdr8 .item-inner .item-after span.badge {
     background: #f3b210 !important;
+    color: white !important;
 }
 
 .Mdr8-Svr .icon-radio {
@@ -112,6 +114,7 @@ span.badge {
 }
 .Mdr8-Svr .item-inner .item-after span.badge {
     background: #f37100 !important;
+    color: white !important;
 }
 
 .Svr .icon-radio {
@@ -122,6 +125,7 @@ span.badge {
 }
 .Svr .item-inner .item-after span.badge {
     background: #d30000 !important;
+    color: white !important;
 }
 
 .bSCard, .r8Card{
@@ -258,4 +262,8 @@ button {
     font-weight: bold;
     color: black;
     display: inline;
+}
+
+.page-content {
+    padding-bottom: 10%;
 }

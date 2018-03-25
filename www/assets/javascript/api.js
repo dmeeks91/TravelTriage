@@ -59,45 +59,79 @@ var tableData = [];
     });
 };
 
-// Create Translation Table
-var testTrans = ['Thanks for seeing me today','Here is my problem list','Body System','Symptom','Severity','Head','Dizzy','Moderate','Head','Light-Headed','Mild/Moderate'];
-var headArr = testTrans.slice(0, 5);
-var symArr = testTrans.slice(5, testTrans.length);
-var groupSize = 3;
-var groups = symArr.map( function(e,i){ 
-  return i%groupSize===0 ? symArr.slice(i,i+groupSize) : null; 
-})
-.filter(function(e){ return e; });
+// Dummy data for translated output
+// Need to add symptom, severity, and comment into translation 
+var testOutput = {
+  0: {
+      bodySystem: ["Head", "Cabeza"],
+      symptom: {
+          0: { 
+            name: ["Dizzy", "Mareado"],
+            rate: ["Mild", "Templado"],
+            comment: ["I fell when walking", "Me caí al caminar"]
+          },
+          1: {
+            name: ["Pain", "Dolor"],
+            rate: ["Moderate", "Moderar"],
+            comment: ["", ""]
+          }
+      }   
+  },
+  1: {
+    bodySystem: ["Knee", "Rodilla"],
+    symptom: {
+        0: { 
+          name: ["Pain", "Dolor"],
+          rate: ["Severe", "Grave"],
+          comment: ["", ""]
+        }
+    }   
+}
+}
 
-var htmlStart = `<div class="data-table data-table-init card">
-  <div class="card-header">
-    ${headArr[0]}<br>
-    ${headArr[1]}
-  </div>
-  <div class="card-content">
-    <table>
-      <thead>
-        <tr>
-          <th class="label-cell">${headArr[2]}</th>
-          <th class="label-cell">${headArr[3]}</th>
-          <th class="label-cell">${headArr[4]}</th>
-        </tr>
-      </thead> 
-      <tbody>`;
-
-var htmlTable="";
-  $.each(groups, function(key, value) {
-  htmlTable += `<tr>
-            <td class="label-cell">${value[0]}</td>
-            <td class="label-cell">${value[1]}</td>
-            <td class="label-cell">${value[2]}</td>
-          </tr>`;
-  });
-
-var htmlEnd = `</tbody>
-    </table>
-  </div>
-</div>`;
-
-$("#transDisplay").html(htmlStart + htmlTable + htmlEnd);
+function transOutput() {
+  var card="";
+  var currKey = "";
+    $.each(testOutput, function(key, value) {
+      card += `
+      <div class="data-table data-table-init card">
+        <div class="card-header">
+          <div class="label-cell bsHead">${testOutput[key].bodySystem[1]} (${testOutput[key].bodySystem[0]})</div>
+        </div>
+        <div class="card-content">
+            <table>
+                <thead>    
+                <tr>
+                    <th class="label-cell">Symptom</th>
+                    <th class="label-cell">Severity</th>
+                    <th class="label-cell">Comment</th>
+                </tr>
+                </thead> 
+                <tbody>
+      `;
+      currKey = key;
+          $.each(testOutput[currKey].symptom, function(key, value) {
+            card += `
+                  <tr>
+                      <td class="label-cell">${testOutput[currKey].symptom[key].name[1]}<br>
+                          <div class="symptOld">${testOutput[currKey].symptom[key].name[0]}</div>
+                      </td>
+                      <td class="label-cell">${testOutput[currKey].symptom[key].rate[1]}<br>
+                          <div class="symptOld">${testOutput[currKey].symptom[key].rate[0]}</div>
+                      </td>
+                      <td class="label-cell">${testOutput[currKey].symptom[key].comment[1]}<br>
+                          <div class="symptOld">${testOutput[currKey].symptom[key].comment[0]}</div>
+                      </td>
+                  </tr>
+            `;
+          });
+      card += `
+                </tbody>
+            </table>
+        </div>
+      </div>
+      `  
+    });
+  $("#transDisplay").append(card);
+};
 

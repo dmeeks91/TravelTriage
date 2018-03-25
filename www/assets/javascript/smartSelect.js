@@ -64,12 +64,39 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
     ],
     bodySystems = [
     ],
+    rates = [
+                {
+                    name: "Mild",
+                    className: "Mld",
+                    score: "1",
+                },
+                {
+                    name: "Mild/Moderate",
+                    className: "Mld-Mdr8",
+                    score: "2",
+                },
+                {
+                    name: "Moderate",
+                    className: "Mdr8",
+                    score: "3",
+                },
+                {
+                    name: "Moderate/Severe",
+                    className: "Mdr8-Svr",
+                    score: "4",
+                },
+                {
+                    name: "Severe",
+                    className: "Svr",
+                    score: "5",
+                }
+            ],
     lngSSExists = false,
     user = {
         name:"",
         location:"",
         language:"",
-    }
+    },
     //UserComplaint Object this will house all the properties and methods concerning the userComplaint
     usrComplaint = {
 
@@ -85,6 +112,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 aTagID: `bSAcrdn_${index}`,
                 slctID: `bS${index}`,
                 divID: `bS${index}_symptHolder`,
+                bodySystem: ["",""],
                 symptoms: []
             })
 
@@ -132,7 +160,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                     closed: function () {
                         if (this.$selectEl[0].value != "NA")
                         {
-                            thisBS.bodySystem = this.valueEl.innerText
+                            thisBS.bodySystem[0] = this.valueEl.innerText;
                             thisBS.symptoms = [];
                             self.createSAcrdn(index);
                         }    
@@ -147,13 +175,13 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 thisBS = bodySystems[bSIndx];
                 sIndx = thisBS.symptoms.length;
                 $.each(symIndexArray, function(key, obj){
-                    if (obj.bSArr.indexOf(thisBS.bodySystem) != -1)
+                    if (obj.bSArr.indexOf(thisBS.bodySystem[0]) != -1)
                     {
                         sItems += `<div class="card">
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}"> 
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}_Cmt">  
                                         <a class="item-link item-content" 
-                                            href="/ratePage/${thisBS.bodySystem}/${obj.name.toUpperCase()}/${thisBS.slctID}_s${sIndx}/${thisBS.slctID}_s${sIndx}_Cmt/">                                        
+                                            href="/ratePage/${thisBS.bodySystem[0]}/${obj.name.toUpperCase()}/${bSIndx}/${sIndx}/">                                        
                                             <div class="card-content">
                                                 <div class="item-inner"> 
                                                     <div class="item-title">                                               
@@ -166,7 +194,9 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                                             </div>
                                         </a>
                                     </div>`
-                        thisBS.symptoms.push({elID:`${thisBS.slctID}_s${sIndx}`,rate:"", comment:""});
+                        thisBS.symptoms.push({name:[`${obj.name}`,""],
+                                              rate:["",""], 
+                                              comment:["",""]});
                         sIndx = thisBS.symptoms.length;
                     }            
                 });            
@@ -218,6 +248,34 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                     }
                 }
             });
+        },
+        createRateList: function() {
+            var radioHtml = "";
+            $.each(rates, function(key, r8Obj){
+                radioHtml += `<li>
+                                <label class="item-radio item-content ${r8Obj.className}">
+                                    <input type="radio" name="r8RadioGroup" value=${r8Obj.score}/>
+                                    <i class="icon icon-radio"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">${r8Obj.name}</div>
+                                        <div class="item-after">
+                                            <span class="badge r8Badge">
+                                                ${r8Obj.score}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>`
+            });
+            var cmtHtml = `<li class="item-content item-input">
+                                <div class="item-inner" id="r8CmtHolder">
+                                    <div class="item-title item-label">Additional Comments:</div>
+                                    <div class="item-input-wrap">
+                                        <textarea id="r8Cmt" class="resizable"></textarea>
+                                    </div>
+                                </div>
+                            </li>`
+            $('#r8Holder').html(radioHtml + cmtHtml);
         },        
         setUser: function() {
             var form = app.form.convertToData('#myInfo');
@@ -225,6 +283,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             user.location = form.Location;
             user.language = form.Language;
         },
+        
        
     }
 

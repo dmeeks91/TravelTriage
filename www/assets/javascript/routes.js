@@ -12,9 +12,13 @@ routes = [
     componentUrl: './assets/pages/bodySystems.html',
   },
   {
-    path: '/ratePage/:bSVal/:sVal/:sID/:sCmtID/',
+    path: '/rateSymp/:r8Index/:sVal/:sID/:sCmtID/',
     componentUrl: './assets/pages/rate.html',
   },
+  {
+    path: '/ratePage/:bSVal/:sVal/:sID/:sCmtID/',
+    componentUrl: './assets/pages/rate.html',
+  },  
   {
     path: '/translate/:bsCount',
     componentUrl: './assets/pages/translate.html',

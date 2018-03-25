@@ -30,11 +30,11 @@
                         <ul>
                             {{#each rates}}
                                 <li>
-                                    <a class="item-link back" href="#">
+                                    <a class="item-link back" @click=>
                                         <div class="card-content r8Content">
                                             <div class="item-inner">
                                                 <div class="item-title"><b>{{r8Name}}</b></div>
-                                                <div class="item-after"><span class="badge">{{score}}</span></div>
+                                                <div class="item-after"><span class="badge" id$="{{r8Class}}">{{score}}</span></div>
                                             </div>
                                         </div> 
                                     </a>
@@ -49,6 +49,17 @@
 </template>
 <script>
     return {
+        methods: {
+            rateSymptom: function () {
+                
+            },
+        },
+        on: {
+            pageAfterIn: function(e, page) {
+                console.log('pageAfterIn', page);
+                console.log($("#Mild"))
+            }
+        },
         data: function() {
             return {
                 rates: [

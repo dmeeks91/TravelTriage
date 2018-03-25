@@ -72,6 +72,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
     }
     //UserComplaint Object this will house all the properties and methods concerning the userComplaint
     usrComplaint = {
+
         //Create Body System Smart Select
         createBSSS: function(){
             //hide FAB
@@ -90,9 +91,11 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             var thisBS = bodySystems[index],
                 self = this,
                 options = `<option value="NA" selected>Select a Body System</option>`;
+
             $.each(bsIndexArray, function(key, value){
                 options += `<option value="${value.replace(' ', '_')}">${value}</option>`;
             });
+            
             var html = `<div class="bSCard">
                             <div class="list no-hairlines no-hairlines-between">
                                 <ul>

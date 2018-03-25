@@ -20,12 +20,6 @@
     width: 100%;
 }
 
-.badge.notRated {
-    background-color: #ffffff;
-    border: 1px solid #ae9c9c;
-    color: #ae9c9c;
-}
-
 .md .badge,
 .ios .badge,
 span.badge {
@@ -73,6 +67,12 @@ span.badge {
     margin-top: 20%;
 }
 
+.notRated .item-inner .item-after span.badge {
+    background-color: #ffffff;
+    border: 1px solid #ae9c9c;
+    color: #ae9c9c;
+}
+
 .Mld .icon-radio {
     border-color: #91be32 !important;
 }
@@ -81,6 +81,7 @@ span.badge {
 }
 .Mld .item-inner .item-after span.badge {
     background: #91be32 !important;
+    color: white;
 }
 
 .Mld-Mdr8 .icon-radio {

@@ -63,11 +63,20 @@
             }
         },
         on: {
-            pageBeforeIn: function(e,page) {
+            pageBeforeIn: function(e, page) {
                 if (bodySystems.length === 0)
                 {
                     usrComplaint.createBSSS();
                 }
+            },
+            pageBeforeOut: function(e, page) {
+                console.log('e');
+                console.log(e);
+                console.log('page');
+                console.log(page);
+            },
+            pageMounted: function(e, page) {
+                usrComplaint.upd8Bdg();
             }
         }
     }

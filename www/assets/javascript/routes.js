@@ -16,7 +16,7 @@ routes = [
     componentUrl: './assets/pages/rate.html',
   },
   {
-    path: '/ratePage/:bSVal/:sVal/:sID/:sCmtID/',
+    path: '/ratePage/:bSVal/:sVal/:bSID/:sID/',
     componentUrl: './assets/pages/rate.html',
   },  
   {

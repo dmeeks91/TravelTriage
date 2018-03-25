@@ -92,6 +92,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 }
             ],
     lngSSExists = false,
+    slctdbS = {},
     user = {
         name:"",
         location:"",
@@ -181,14 +182,14 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}"> 
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}_Cmt">  
                                         <a class="item-link item-content" 
-                                            href="/ratePage/${thisBS.bodySystem[0]}/${obj.name.toUpperCase()}/${bSIndx}/${sIndx}/">                                        
-                                            <div class="card-content">
+                                            href="/ratePage/${thisBS.bodySystem[0]}/${obj.name}/${bSIndx}/${sIndx}/">                                        
+                                            <div class="card-content notRated" id="${thisBS.slctID}_s${sIndx}">
                                                 <div class="item-inner"> 
                                                     <div class="item-title">                                               
                                                         ${obj.name}
                                                     </div>
                                                     <div class="item-after">
-                                                        <span name="s${sIndx}" class="badge notRated">NR</span>    
+                                                        <span id=${thisBS.slctID}_s${sIndx}_r8 name="s${sIndx}" class="badge">NR</span>    
                                                     </div>
                                                 </div>                                            
                                             </div>
@@ -283,7 +284,32 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             user.location = form.Location;
             user.language = form.Language;
         },
-        
+        rateSymptom: function(obj) {
+            var thisSymp = bodySystems[obj.bSID].symptoms[obj.sID];
+            var r8 = "";
+            var cmt = $('#r8Cmt')[0].value;
+
+            $.each($('.item-radio input'), function(key, value){
+                if (value.checked)
+                {
+                    r8 = rates[key].name;
+                }
+            })
+
+            //update table
+            thisSymp.rate[0] = r8;
+            thisSymp.comment[0] = cmt;
+
+            slctdbS = bodySystems[obj.bSID];
+        },
+        upd8Bdg: function() {
+            $.each(bodySystems, function(key, bS){                
+                $.each(symptoms)
+            })
+        },
+        getR8Obj: function(r8Name) {
+            
+        }
        
     }
 

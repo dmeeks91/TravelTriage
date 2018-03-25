@@ -33,7 +33,8 @@ var tableData = [];
         }
       })
       //console.log(formData);
-      var stringObject = JSON.stringify(bodySystems[0].symptoms[0]);
+      var stringObject = JSON.stringify(dataArray);
+      console.log(stringObject)
             
   // var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
   // + JSON.stringify(dataArray) + "&lang=" + "en" + "-" + user.language + "&format=plain"
@@ -45,7 +46,7 @@ var tableData = [];
   //   });  
     
     var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
-  +JSON.stringify(dataArray) + "&lang=" + "en" + "-" + user.language + "&format=plain"
+  + JSON.stringify(dataArray) + "&lang=" + "en" + "-" + user.language + "&format=plain"
     $.ajax({
     url: yandex,
     method: "GET"

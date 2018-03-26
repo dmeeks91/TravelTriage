@@ -98,4 +98,4 @@ function transOutput() {
         </div>
       </div>
       `  
-    });
+    })};

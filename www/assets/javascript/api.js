@@ -50,10 +50,10 @@ var trsl8 = {
                   </div>`  
         
       $("#transDisplay").append(card);
-      if ((indx - 1) === bodySystems.length)
+      if (indx === (bodySystems.length -1))
       {
-          //app.preloader.hide();
-          $('#page-content').show();
+          app.preloader.hide();
+          $('.page-content').show();
           testCoord();
       }
     },
@@ -88,7 +88,7 @@ var trsl8 = {
           //Translate current bS THEN update the global bodySystems Object THEN createTable 
           self.trsl8Section(bSObj,{key: keysArray, old: oldValsArray, new: newValsArray}).then(function(trsl8) {
             self.updateBSObj(trsl8.bSObj, trsl8.arrays.key, trsl8.arrays.new).then(function (data) {
-              self.createTable(data);
+              self.createTable(data, bSID);
             })
           });
       

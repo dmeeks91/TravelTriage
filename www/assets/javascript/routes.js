@@ -8,7 +8,7 @@ routes = [
     componentUrl: './assets/pages/userInfo.html',
   },
   {
-    path: '/bSList/:user/',
+    path: '/bSList',
     componentUrl: './assets/pages/bodySystems.html',
   },
   {

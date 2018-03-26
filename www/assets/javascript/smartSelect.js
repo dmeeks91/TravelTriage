@@ -1,22 +1,22 @@
 //Global Variables
-var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Throat","Shoulder","Chest","Back","Arm","Elbow","Wrist","Hand","Fingers","Stomach","Hip","Leg","Knee","Foot","Toes"],
+var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Throat","Shoulder","Chest","Back","Arm","Elbow","Wrist","Hand","Fingers","Stomach","Hip","Leg","Knee","Foot","Toes"],
     symIndexArray = [
-        {name: 'Bleeding', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Bleeding', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Chills', bSArr:['General Feeling']},
-        {name: 'Coughing', bSArr:['General Feeling','Mouth','Neck/Throat','Chest','Back']},
+        {name: 'Coughing', bSArr:['General Feeling','Mouth','Neck~Throat','Chest','Back']},
         {name: 'Digestive Problems', bSArr:['General Feeling','Stomach']},
         {name: 'Dizzy', bSArr:['General Feeling','Head']},
-        {name: 'Dry', bSArr:['General Feeling','Eye','Ear','Nose','Mouth','Neck/Throat','Chest']},
+        {name: 'Dry', bSArr:['General Feeling','Eye','Ear','Nose','Mouth','Neck~Throat','Chest']},
         {name: 'Fever', bSArr:['General Feeling','Head']},
         {name: 'Light-headed', bSArr:['General Feeling','Head']},
-        {name: 'Nausea, Vomiting', bSArr:['General Feeling','Stomach']},
-        {name: 'Numbness, Tingling', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
-        {name: 'Pain', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
-        {name: 'Short of Breath', bSArr:['General Feeling','Neck/Throat','Chest','Back']},
-        {name: 'Sick', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Nausea~Vomiting', bSArr:['General Feeling','Stomach']},
+        {name: 'Numbness~Tingling', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Pain', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Short of Breath', bSArr:['General Feeling','Neck~Throat','Chest','Back']},
+        {name: 'Sick', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Sleepy', bSArr:['General Feeling']},
         {name: 'Sweaty', bSArr:['General Feeling']},
-        {name: 'Thirsty', bSArr:['General Feeling','Mouth','Neck/Throat']},
+        {name: 'Thirsty', bSArr:['General Feeling','Mouth','Neck~Throat']},
         {name: 'Tired', bSArr:['General Feeling']},
         {name: 'Trouble Breathing', bSArr:['General Feeling','Chest']},
         {name: 'Trouble Hearing', bSArr:['General Feeling','Ear']},
@@ -26,7 +26,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         {name: 'Trouble Speaking', bSArr:['General Feeling','Head','Mouth']},
         {name: 'Trouble Walking', bSArr:['General Feeling','Back','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Urinary Problems', bSArr:['General Feeling','Stomach']},
-        {name: 'Weak', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']}
+        {name: 'Weak', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']}
     ],
     languages = [
         {name: 'Azerbaijan', value: 'az'}, {name: 'Albanian', value: 'sq'}, {name: 'Amharic', value: 'am'}, 
@@ -291,6 +291,10 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 if (value.checked)
                 {
                     r8 = rates[key].name;
+                }
+                else
+                {
+                    console.log('nothing checked');
                 }
             })
 

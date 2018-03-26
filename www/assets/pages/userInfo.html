@@ -40,7 +40,8 @@
                                     <div class="item-inner">
                                         <div class="item-title item-label">Name</div>
                                         <div class="item-input-wrap">
-                                            <input name="Name" type="text" id="userName" placeholder="Your name">
+                                            <input name="Name" type="text" id="userName" 
+                                            placeholder="Your name" @change="enableNext">
                                             <span class="input-clear-button"></span>
                                         </div>
                                     </div>
@@ -49,7 +50,8 @@
                                     <div class="item-inner">
                                         <div class="item-title item-label">Current Location</div>
                                         <div class="item-input-wrap">
-                                            <input name="Location" type="text" placeholder="Country, State, City etc.">
+                                            <input name="Location" type="text" 
+                                            placeholder="Country, State, City etc." @change="enableNext">
                                             <span class="input-clear-button"></span>
                                         </div>
                                     </div>
@@ -62,7 +64,7 @@
                     </form>
                 </div>
                 <div class="card-footer no-hairlines">
-                    <a class="button button-fill btnNext" href="/bSList/name/">Next</a>
+                    <a class="button button-fill btnNext disabled" id="btnUserInfo" href="/bSList/">Next</a>
                 </div>
             </div>                                           
         </div>
@@ -74,15 +76,17 @@
             return {
             }
         },
+        methods:{
+            enableNext: function () {
+                usrComplaint.setUser(true);
+            },
+        },
         on: {
             pageBeforeIn: function(e,page) {
-                if (!lngSSExists)
-                {
-                    usrComplaint.createLngSS();
-                }
+                usrComplaint.createLngSS();
             },
             pageBeforeOut: function(e, page) {
-                usrComplaint.setUser();
+                usrComplaint.setUser(false);
             },
         }
     }

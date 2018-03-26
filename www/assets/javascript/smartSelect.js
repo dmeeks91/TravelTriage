@@ -91,7 +91,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
                     score: "5",
                 }
             ],
-    lngSSExists = false,
+    lngSSExists = ($('#lngSS')[0] === undefined),
     slctdbS = {},
     user = {
         name:"",
@@ -102,20 +102,23 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
     usrComplaint = {
 
         //Create Body System Smart Select
-        createBSSS: function(){
+        createBSSS: function(createNew, index){
             //hide FAB
             $('#bSBtnDiv').hide();  
 
-            var index = bodySystems.length;
+            if (createNew)
+            {
+                index = bodySystems.length;
 
-            //push object to bodySystems[]
-            bodySystems.push({
-                aTagID: `bSAcrdn_${index}`,
-                slctID: `bS${index}`,
-                divID: `bS${index}_symptHolder`,
-                bodySystem: ["",""],
-                symptoms: []
-            })
+                //push object to bodySystems[]
+                bodySystems.push({
+                    aTagID: `bSAcrdn_${index}`,
+                    slctID: `bS${index}`,
+                    divID: `bS${index}_symptHolder`,
+                    bodySystem: ["",""],
+                    symptoms: []
+                })
+            }            
 
             var thisBS = bodySystems[index],
                 self = this,
@@ -169,6 +172,13 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
                 }
             });
         },
+        //Show all Body System Smart Select ... this will be called when user clicks back link
+        showAllBSSS: function () {
+            var self = this;
+            $.each(bodySystems, function(key, value) {
+                self.createBSSS(false, key);
+            })
+        },        
         //Create Symptom Accordian
         createSAcrdn: function(bSIndx){
             var sItems = "",
@@ -217,7 +227,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
         }, 
         //Create language Smart Select
         createLngSS: function() {
-            if (lngSSExists) return;
+            if ($('#lngSS')[0] != undefined) return;
             var options = `<option value="NA" selected>Select local language</option>`;
             $.each(languages, function(key, lngObj){
                 options += `<option value="${lngObj.value}">${lngObj.name}</option>`;
@@ -235,7 +245,6 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
                         </a>`; 
 
             $('#lngSSHolder').append(html);
-            lngSSExists = true;
             app.smartSelect.create({
                 closeOnSelect: true,
                 searchbar: true,
@@ -243,7 +252,10 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
                 on: {
                     close: function () {
                         var addRemove = (this.$selectEl[0].value != "NA") ? "removeClass" : "addClass";
-                        $('.lngInput')[addRemove]('notSlctd');    
+                        $('.lngInput')[addRemove]('notSlctd');  
+                    },
+                    closed: function () {
+                        usrComplaint.setUser(true);
                     }
                 }
             });
@@ -276,11 +288,20 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
                             </li>`
             $('#r8Holder').html(radioHtml + cmtHtml);
         },        
-        setUser: function() {
+        setUser: function(enable) {
             var form = app.form.convertToData('#myInfo');
             user.name = form.Name;
             user.location = form.Location;
             user.language = form.Language;
+
+            if (enable) this.enableNext();
+        },
+        enableNext: function() {
+            var hasName = (user.name.length > 0),
+                hasLocation = (user.location.length > 0),
+                hasLanguage = (user.language != "NA");
+            
+            if (hasName && hasLocation && hasLanguage) $('#btnUserInfo').removeClass('disabled');
         },
         rateSymptom: function(obj) {
             var thisSymp = bodySystems[obj.bSID].symptoms[obj.sID];
@@ -294,7 +315,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Th
                 }
                 else
                 {
-                    console.log('nothing checked');
+                    //console.log('nothing checked');
                 }
             })
 

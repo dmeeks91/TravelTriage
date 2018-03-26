@@ -69,7 +69,9 @@
         },
         on: {
             pageBeforeIn: function(e,page) {
-                trsl8.callAPI();
+                $.each(bodySystems, function(bSID, bSObj){
+                    trsl8.callAPI(bSID, bSObj);
+                })                
                 testCoord();
             },
         }

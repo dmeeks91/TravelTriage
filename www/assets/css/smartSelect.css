@@ -58,6 +58,10 @@ span.badge {
     margin-top: 3%;
 }
 
+.item-title.item-label {
+    padding: 2%;
+}
+
 #r8CmtHolder .item-label {
     padding-bottom: 1.5%;
     font-size: unset;
@@ -224,8 +228,10 @@ button {
 .lngInput .item-after {
     text-align: left;
     width: 100%;
-    margin-left: 1%;
+    margin-left: unset;
+    padding-left: unset !important;
     font-size: 115% !important;
+    padding-top: 1%;
 }
 
 .item-input-wrap input {
@@ -266,4 +272,23 @@ button {
 
 .page-content {
     padding-bottom: 10%;
+}
+
+.block-title {
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+#bSBtn
+{
+    margin: auto;
+    background-color:#ff0000;
+    box-shadow: 1px 2px 4px #013e7d;
+}
+
+#newBSBtn
+{
+    margin: auto;    
+    background-color: #2196f3;
+    box-shadow: 1px 2px 4px #4f0404;
 }

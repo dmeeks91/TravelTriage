@@ -69,10 +69,7 @@
         },
         on: {
             pageBeforeIn: function(e,page) {
-                translateResults();
-                transOutput();
-                console.log(user.location);
-                console.log(user.language);
+                trsl8.callAPI();
                 testCoord();
             },
         }

@@ -19,13 +19,13 @@ function callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       createMarker(results[i]);
-      console.log(results)
+      //console.log(results)
     }
   }
 }
 
 function createMarker(place) {
-  console.log(place)
+  //console.log(place)
   var placeLoc = place.geometry.location;
   var marker = new google.maps.Marker({
     map: map,
@@ -50,8 +50,8 @@ function createMarker(place) {
 
 function testCoord () { 
   var googleCoord = "https://maps.googleapis.com/maps/api/geocode/json?address=" + user.location + "&key=AIzaSyCnghntSOf7EteeY_c8Ngej65kyVoktDp0" 
-  console.log(googleCoord) 
-  console.log(user.location) 
+  //console.log(googleCoord) 
+  //console.log(user.location) 
   $.ajax({ 
     url: googleCoord, 
     method: "GET" 
@@ -74,7 +74,7 @@ function testCoord () {
 //     url: detect,
 //     method: "GET"
 //   }).then(function(langdet) {
-//     console.log(langdet.lang)
+//     //console.log(langdet.lang)
 //   });
 //   var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
 //   + symptomArray + "&lang=" + langdet.lang + "-" + selectLang + "&format=plain"
@@ -83,13 +83,13 @@ function testCoord () {
 //   url: yandex,
 //   method: "GET"
 //   }).then(function(translated) {
-//   console.log(translated);
+//   //console.log(translated);
 //   var translatedArray = [];
 //   translatedArray.push(translated.text[0].split(","))
-// console.log(translatedArray)
+// //console.log(translatedArray)
 
 // for (var key in translatedArray) {
-//   console.log(key, translatedArray);
+//   //console.log(key, translatedArray);
 //   $("#translated").append(`<li>
 //   ${key, translatedArray[key]}</li>`)
 
@@ -104,10 +104,10 @@ function testCoord () {
 //     }).then(function(responseG) {
 //       var lat = responseG.results[0].geometry.location.lat
 //       var lng = responseG.results[0].geometry.location.lng
-//       console.log(lat)
-//       console.log(lng) 
-//     console.log(userlocation)
-//     console.log(googleCoord)
+//       //console.log(lat)
+//       //console.log(lng) 
+//     //console.log(userlocation)
+//     //console.log(googleCoord)
 
 
 
@@ -130,13 +130,13 @@ function testCoord () {
 //     var twoLetterCode = [];
 // $$('select[name="languages"] option:checked').each(function () {
 //    twoLetterCode.push(this.value);
-//    console.log(this.value);
+//    //console.log(this.value);
 // });        
 
 // translatedBS = [];
 // $$('select[name="bodysystems"] option:checked').each(function () {
 //     translatedBS.push(this.text);
-//     console.log(this.text);
+//     //console.log(this.text);
 //  });      
     
 //         var yandex = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012&text="
@@ -147,7 +147,7 @@ function testCoord () {
 //             url: yandex,
 //             method: "GET"
 //             }).then(function(translated) {
-//               console.log(translated.text)
+//               //console.log(translated.text)
 //                 $("#results").html(translated.text)
 //                     });           
 // })
@@ -173,5 +173,5 @@ function testCoord () {
                     
 // });
 
-// console.log(bsIndexArray)
-// console.log(symIndexArray)
+// //console.log(bsIndexArray)
+// //console.log(symIndexArray)

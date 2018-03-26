@@ -69,8 +69,12 @@
         },
         on: {
             pageBeforeIn: function(e,page) {
-                trsl8.callAPI();
-                testCoord();
+                $('#page-content').hide();
+                //app.preloader.show();
+                $.each(bodySystems, function(bSID, bSObj){
+                    trsl8.callAPI(bSID, bSObj);
+                })                
+                //testCoord();
             },
         }
     }

@@ -1,27 +1,18 @@
 
 //Summary of trsl8.callAPI()
-  //1) Call clearTrackingArrays
-        //Clear tracking arrays used with translate API. 
-        //These arrays store only non-blank values. 
-        //This step is necessary b/c during testing we got errors upon sending to many blank strings to the API.
-  //2) Push non-blank bodySystem and symptom data to oldVals array.
+  //1) Push non-blank bodySystem and symptom data to oldValsArray.
   //3) Call trnsSection
-        //makes an ajax call to the yandex API with the stringified version of oldVals array
+        //makes an ajax call to the yandex API with the stringified version of oldsVals array
   //4) Call updateBSObj
-        //updates current bodySystem object with translated text by looping through keys array,
+        //updates current bodySystem object with translated text by looping through keysArray,
         //and replacing 2nd index position of bodySystem[key] with the corresponding translated text 
-        //stored in the newVals array.
+        //stored in the newValsArray.
   //5) Call creatTable
-        //adds a new card to the DOm with the table summary in it
+        //adds a new card with a table translating the users complaint to the DOM
 
 var trsl8 = {
-    keys: [],  
-    oldVals: [],
-    newVals: [],
-    createTable: function (bSObj) {
-      var card="";
-        //$.each(bodySystems, function(key, bSObj) {
-          card += `<div class="data-table data-table-init card">
+    createTable: function (bSObj, indx) {
+      var card = `<div class="data-table data-table-init card">
                     <div class="card-header">
                       <div class="label-cell bsHead">${bSObj.bodySystem[1]} (${bSObj.bodySystem[0]})</div>
                     </div>
@@ -57,69 +48,57 @@ var trsl8 = {
                       </table>
                     </div>
                   </div>`  
-        //});
-    
+        
       $("#transDisplay").append(card);
+      if ((indx - 1) === bodySystems.length)
+      {
+          //app.preloader.hide();
+          $('#page-content').show();
+          testCoord();
+      }
     },
-    clearTrackingArrays: function() {
-      this.keys = [];
-      this.oldVals = [];
-      this.newVals = [];
-    },
-    callAPI: function() {      
-      var self = this,
-          msg  = [];
-      //wrapped in promise because we want to ensure that all of the users complaints are updated 
-      //before creating the a summary table and appending it to the DOM 
-      return new Promise ( function(resolve, reject) {
-        //loop through bodySystems and translate seperately. 
-        $.each(bodySystems, function(bSID, bSObj) {          
-            self.clearTrackingArrays();
+    callAPI: function(bSID, bSObj) {      
+      var self = this, 
+          keysArray = [], 
+          oldValsArray = [], 
+          newValsArray = [];
 
-            //add this bodySystem to the keysArray
-            self.keys.push({type: 'bS', indx: `${bSID}`});
-            self.oldVals.push(bSObj.bodySystem[0]);
+          //add this bodySystem to the keysArray
+          keysArray.push({type: 'bS', indx: `${bSID}`});
+          oldValsArray.push(bSObj.bodySystem[0]);
 
-              //loop through symptoms and add keys/values of rated symptoms
-              $.each(bSObj.symptoms,function(sID, sObj) {
-                  if (sObj.rate[0] != "NR")
-                    {
-                      self.keys.push({type: 'name', indx: `${sID}`});
-                      self.oldVals.push(sObj.name[0]);
-                  
-                      self.keys.push({type: 'rate', indx: `${sID}`});
-                      self.oldVals.push(sObj.rate[0]);
+          //loop through symptoms and add keys/values of rated symptoms
+          $.each(bSObj.symptoms,function(sID, sObj) {
+              if (sObj.rate[0] != "NR")
+                {
+                  keysArray.push({type: 'name', indx: `${sID}`});
+                  oldValsArray.push(sObj.name[0]);
+              
+                  keysArray.push({type: 'rate', indx: `${sID}`});
+                  oldValsArray.push(sObj.rate[0]);
 
-                      if (sObj.comment[0].length > 0)
-                      {//only translate comment if it exists
-                        self.keys.push({type: 'comment', indx: `${sID}`});
-                        self.oldVals.push(sObj.comment[0]);
-                      }                      
-                    }
-              });
+                  if (sObj.comment[0].length > 0)
+                  {//only translate comment if it exists
+                    keysArray.push({type: 'comment', indx: `${sID}`});
+                    oldValsArray.push(sObj.comment[0]);
+                  }                      
+                }
+          });
 
-            //Translate current bS THEN update the bodySystems Object THEN createTable 
-            self.trsl8Section().then(function(trnsVals) {
-              //self.newVals = trnsVals;
-              self.updateBSObj(bSID, self.keys, trnsVals).then(function (data) {
-                self.createTable(data);
-              })
-            });
-        });
-
-        //send the status message back to the page
-        resolve(msg);
-      })
+          //Translate current bS THEN update the global bodySystems Object THEN createTable 
+          self.trsl8Section(bSObj,{key: keysArray, old: oldValsArray, new: newValsArray}).then(function(trsl8) {
+            self.updateBSObj(trsl8.bSObj, trsl8.arrays.key, trsl8.arrays.new).then(function (data) {
+              self.createTable(data);
+            })
+          });
       
 
     },
-    trsl8Section: function() {
+    trsl8Section: function(obj, data) {
       var self = this,
           yandex = `https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20180315T074722Z.24f814dba1dc1456.f7b63ba7e42f3a418e49b4c076e0902d50b35012`;
-          //data = JSON.stringify(self.oldVals).replace(/","/g,'"∞"');
-          yandex += `&text=${JSON.stringify(self.oldVals).replace(/","/g,'"∞"')}&lang=en-${user.language}&format=plain`;
+          yandex += `&text=${JSON.stringify(data.old).replace(/","/g,'"∞"')}&lang=en-${user.language}&format=plain`;
 
-          console.log(`url: ${yandex}`);
           //created promise because this step is Async and want to make sure it's complete before calling next step
           return new Promise (
             function(resolve, reject)
@@ -130,40 +109,33 @@ var trsl8 = {
               }).then(function(translated) {
                   //some languages use character other than "," causes error with JSON.parse
                   //got around this by replacing "," with "∞" before and after calling the API
+                  var tData = translated.text[0].replace(/∞/g,",").replace(/,,/g,",");
                   try
                   {
-                    var data = translated.text[0].replace(/∞/g,",");  
-                    if (typeof data === 'string')
-                    {
-                      resolve(JSON.parse(data));
-                    }                      
-                    else
-                    {
-                      resolve(data);
-                    }
+                    data.new = JSON.parse(tData);
                   }
                   catch(e)
                   {
-                    reject(`Error: ${e}`);
+                    data.new = tData.replace("[","").replace("]","").split(",")
+                    console.log(`May have issues with rendering of (${obj.bodySystem}) due to the following error: ${e}`);
                   }
-                    
+                  resolve({bSObj:obj, arrays: data});
                 });
             });
     },
-    updateBSObj: function(bSID, keyArray, valArray) {
+    updateBSObj: function(thisBS, keysArray, valArray) {
       var self = this,
-          thisBS = bodySystems[bSID]
           sympIndx = -1,
           thisType = "";
       return new Promise(
         function(resolve, reject) {
-          if (valArray.length != keyArray.length)
+          if (valArray.length != keysArray.length)
           {
-            console.log({Error: `Unable to translate user input for body system ${thisBS.bodySystem[1]}`});
+            console.log(`Error: Unable to translate user input for body system ${thisBS.bodySystem[0]}`);
           }
           else
           {
-            $.each(keyArray, function(index, keyObj) {
+            $.each(keysArray, function(index, keyObj) {
               thisType = keyObj.type;
               if (thisType === 'bS')
               { //Update bodySystems[bSID].bodySystem newVal(2nd position in array)
@@ -178,7 +150,7 @@ var trsl8 = {
                 }
               }
             })
-            //resolve({Success: `Translated bSObj (${thisBS.bodySystem[0]})`});
+            console.log(`Success: Translated bSObj (${thisBS.bodySystem[0]})`);
             resolve(thisBS);
           }
         }

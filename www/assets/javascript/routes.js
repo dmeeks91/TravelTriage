@@ -8,8 +8,8 @@ routes = [
     componentUrl: './www/assets/pages/userInfo.html',
   },
   {
-    path: '/bSList/:user/',
-    componentUrl: './www/assets/pages/bodySystems.html',
+    path: '/bSList',
+    componentUrl: './assets/pages/bodySystems.html',
   },
   {
     path: '/rateSymp/:r8Index/:sVal/:sID/:sCmtID/',

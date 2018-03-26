@@ -1,22 +1,22 @@
 //Global Variables
-var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Throat","Shoulder","Chest","Back","Arm","Elbow","Wrist","Hand","Fingers","Stomach","Hip","Leg","Knee","Foot","Toes"],
+var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck~Throat","Shoulder","Chest","Back","Arm","Elbow","Wrist","Hand","Fingers","Stomach","Hip","Leg","Knee","Foot","Toes"],
     symIndexArray = [
-        {name: 'Bleeding', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Bleeding', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Chills', bSArr:['General Feeling']},
-        {name: 'Coughing', bSArr:['General Feeling','Mouth','Neck/Throat','Chest','Back']},
+        {name: 'Coughing', bSArr:['General Feeling','Mouth','Neck~Throat','Chest','Back']},
         {name: 'Digestive Problems', bSArr:['General Feeling','Stomach']},
         {name: 'Dizzy', bSArr:['General Feeling','Head']},
-        {name: 'Dry', bSArr:['General Feeling','Eye','Ear','Nose','Mouth','Neck/Throat','Chest']},
+        {name: 'Dry', bSArr:['General Feeling','Eye','Ear','Nose','Mouth','Neck~Throat','Chest']},
         {name: 'Fever', bSArr:['General Feeling','Head']},
         {name: 'Light-headed', bSArr:['General Feeling','Head']},
-        {name: 'Nausea, Vomiting', bSArr:['General Feeling','Stomach']},
-        {name: 'Numbness, Tingling', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
-        {name: 'Pain', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
-        {name: 'Short of Breath', bSArr:['General Feeling','Neck/Throat','Chest','Back']},
-        {name: 'Sick', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Nausea~Vomiting', bSArr:['General Feeling','Stomach']},
+        {name: 'Numbness~Tingling', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Pain', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
+        {name: 'Short of Breath', bSArr:['General Feeling','Neck~Throat','Chest','Back']},
+        {name: 'Sick', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Sleepy', bSArr:['General Feeling']},
         {name: 'Sweaty', bSArr:['General Feeling']},
-        {name: 'Thirsty', bSArr:['General Feeling','Mouth','Neck/Throat']},
+        {name: 'Thirsty', bSArr:['General Feeling','Mouth','Neck~Throat']},
         {name: 'Tired', bSArr:['General Feeling']},
         {name: 'Trouble Breathing', bSArr:['General Feeling','Chest']},
         {name: 'Trouble Hearing', bSArr:['General Feeling','Ear']},
@@ -26,7 +26,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         {name: 'Trouble Speaking', bSArr:['General Feeling','Head','Mouth']},
         {name: 'Trouble Walking', bSArr:['General Feeling','Back','Stomach','Hip','Leg','Knee','Foot','Toes']},
         {name: 'Urinary Problems', bSArr:['General Feeling','Stomach']},
-        {name: 'Weak', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck/Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']}
+        {name: 'Weak', bSArr:['General Feeling','Head','Eye','Ear','Nose','Mouth','Neck~Throat','Shoulder','Chest','Back','Arm','Elbow','Wrist','Hand','Fingers','Stomach','Hip','Leg','Knee','Foot','Toes']}
     ],
     languages = [
         {name: 'Azerbaijan', value: 'az'}, {name: 'Albanian', value: 'sq'}, {name: 'Amharic', value: 'am'}, 
@@ -91,7 +91,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                     score: "5",
                 }
             ],
-    lngSSExists = false,
+    lngSSExists = ($('#lngSS')[0] === undefined),
     slctdbS = {},
     user = {
         name:"",
@@ -102,20 +102,23 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
     usrComplaint = {
 
         //Create Body System Smart Select
-        createBSSS: function(){
+        createBSSS: function(createNew, index){
             //hide FAB
             $('#bSBtnDiv').hide();  
 
-            var index = bodySystems.length;
+            if (createNew)
+            {
+                index = bodySystems.length;
 
-            //push object to bodySystems[]
-            bodySystems.push({
-                aTagID: `bSAcrdn_${index}`,
-                slctID: `bS${index}`,
-                divID: `bS${index}_symptHolder`,
-                bodySystem: ["",""],
-                symptoms: []
-            })
+                //push object to bodySystems[]
+                bodySystems.push({
+                    aTagID: `bSAcrdn_${index}`,
+                    slctID: `bS${index}`,
+                    divID: `bS${index}_symptHolder`,
+                    bodySystem: ["",""],
+                    symptoms: []
+                })
+            }            
 
             var thisBS = bodySystems[index],
                 self = this,
@@ -169,6 +172,13 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 }
             });
         },
+        //Show all Body System Smart Select ... this will be called when user clicks back link
+        showAllBSSS: function () {
+            var self = this;
+            $.each(bodySystems, function(key, value) {
+                self.createBSSS(false, key);
+            })
+        },        
         //Create Symptom Accordian
         createSAcrdn: function(bSIndx){
             var sItems = "",
@@ -217,7 +227,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         }, 
         //Create language Smart Select
         createLngSS: function() {
-            if (lngSSExists) return;
+            if ($('#lngSS')[0] != undefined) return;
             var options = `<option value="NA" selected>Select local language</option>`;
             $.each(languages, function(key, lngObj){
                 options += `<option value="${lngObj.value}">${lngObj.name}</option>`;
@@ -235,7 +245,6 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                         </a>`; 
 
             $('#lngSSHolder').append(html);
-            lngSSExists = true;
             app.smartSelect.create({
                 closeOnSelect: true,
                 searchbar: true,
@@ -243,7 +252,10 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 on: {
                     close: function () {
                         var addRemove = (this.$selectEl[0].value != "NA") ? "removeClass" : "addClass";
-                        $('.lngInput')[addRemove]('notSlctd');    
+                        $('.lngInput')[addRemove]('notSlctd');  
+                    },
+                    closed: function () {
+                        usrComplaint.setUser(true);
                     }
                 }
             });
@@ -276,11 +288,20 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                             </li>`
             $('#r8Holder').html(radioHtml + cmtHtml);
         },        
-        setUser: function() {
+        setUser: function(enable) {
             var form = app.form.convertToData('#myInfo');
             user.name = form.Name;
             user.location = form.Location;
             user.language = form.Language;
+
+            if (enable) this.enableNext();
+        },
+        enableNext: function() {
+            var hasName = (user.name.length > 0),
+                hasLocation = (user.location.length > 0),
+                hasLanguage = (user.language != "NA");
+            
+            if (hasName && hasLocation && hasLanguage) $('#btnUserInfo').removeClass('disabled');
         },
         rateSymptom: function(obj) {
             var thisSymp = bodySystems[obj.bSID].symptoms[obj.sID];
@@ -291,6 +312,10 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 if (value.checked)
                 {
                     r8 = rates[key].name;
+                }
+                else
+                {
+                    //console.log('nothing checked');
                 }
             })
 

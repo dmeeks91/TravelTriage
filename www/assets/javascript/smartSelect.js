@@ -104,7 +104,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         //Create Body System Smart Select
         createBSSS: function(){
             //hide FAB
-            $('#addComplaint').hide();  
+            $('#bSBtnDiv').hide();  
 
             var index = bodySystems.length;
 
@@ -213,9 +213,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                         </div>`;
 
             $(`#${thisBS.divID}`).html(html);
-            $('.sInput').hide();
-            $('#addComplaint').show();
-
+            $('.sInput').hide();     
         }, 
         //Create language Smart Select
         createLngSS: function() {
@@ -229,7 +227,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                             <select name="Language">
                                 ${options}
                             </select>
-                            <div class="item-content">
+                            <div class="item-content item-input">
                                 <div class="item-inner lngInput notSlctd">
                                     <div class="item-title item-label">Local Language</div>
                                 </div>
@@ -301,6 +299,9 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
             thisSymp.comment[0] = cmt;
 
             slctdbS = bodySystems[obj.bSID];
+            
+            //Show buttons 
+            $('#bSBtnDiv').show();
         },
         upd8Bdg: function() {
             var thisR8Name = {},
@@ -323,11 +324,3 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
         },
        
     }
-
-    
-    
-
-
-//Create a body system smart select on page load
-//usrComplaint.createBSSS();
-/* usrComplaint.createLngSS(); */

@@ -9,7 +9,7 @@ routes = [
   },
   {
     path: '/bSList',
-    componentUrl: './assets/pages/bodySystems.html',
+    componentUrl: './www/assets/pages/bodySystems.html',
   },
   {
     path: '/rateSymp/:r8Index/:sVal/:sID/:sCmtID/',

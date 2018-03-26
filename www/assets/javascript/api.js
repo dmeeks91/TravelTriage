@@ -11,7 +11,7 @@
         //adds a new card with a table translating the users complaint to the DOM
 
 var trsl8 = {
-    createTable: function (bSObj) {
+    createTable: function (bSObj, indx) {
       var card = `<div class="data-table data-table-init card">
                     <div class="card-header">
                       <div class="label-cell bsHead">${bSObj.bodySystem[1]} (${bSObj.bodySystem[0]})</div>
@@ -50,6 +50,12 @@ var trsl8 = {
                   </div>`  
         
       $("#transDisplay").append(card);
+      if ((indx - 1) === bodySystems.length)
+      {
+          //app.preloader.hide();
+          $('#page-content').show();
+          testCoord();
+      }
     },
     callAPI: function(bSID, bSObj) {      
       var self = this, 

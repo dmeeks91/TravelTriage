@@ -64,13 +64,47 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
     ],
     bodySystems = [
     ],
+    rates = [
+                {
+                    name: "Mild",
+                    className: "Mld",
+                    score: "1",
+                },
+                {
+                    name: "Mild/Moderate",
+                    className: "Mld-Mdr8",
+                    score: "2",
+                },
+                {
+                    name: "Moderate",
+                    className: "Mdr8",
+                    score: "3",
+                },
+                {
+                    name: "Moderate/Severe",
+                    className: "Mdr8-Svr",
+                    score: "4",
+                },
+                {
+                    name: "Severe",
+                    className: "Svr",
+                    score: "5",
+                }
+            ],
     lngSSExists = false,
+    slctdbS = {},
+    user = {
+        name:"",
+        location:"",
+        language:"",
+    },
     //UserComplaint Object this will house all the properties and methods concerning the userComplaint
     usrComplaint = {
+
         //Create Body System Smart Select
         createBSSS: function(){
             //hide FAB
-            $('#addComplaint').hide();  
+            $('#bSBtnDiv').hide();  
 
             var index = bodySystems.length;
 
@@ -79,15 +113,18 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 aTagID: `bSAcrdn_${index}`,
                 slctID: `bS${index}`,
                 divID: `bS${index}_symptHolder`,
+                bodySystem: ["",""],
                 symptoms: []
             })
 
             var thisBS = bodySystems[index],
                 self = this,
                 options = `<option value="NA" selected>Select a Body System</option>`;
+
             $.each(bsIndexArray, function(key, value){
                 options += `<option value="${value.replace(' ', '_')}">${value}</option>`;
             });
+            
             var html = `<div class="bSCard">
                             <div class="list no-hairlines no-hairlines-between">
                                 <ul>
@@ -124,7 +161,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                     closed: function () {
                         if (this.$selectEl[0].value != "NA")
                         {
-                            thisBS.bodySystem = this.valueEl.innerText
+                            thisBS.bodySystem[0] = this.valueEl.innerText;
                             thisBS.symptoms = [];
                             self.createSAcrdn(index);
                         }    
@@ -132,7 +169,6 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 }
             });
         },
-
         //Create Symptom Accordian
         createSAcrdn: function(bSIndx){
             var sItems = "",
@@ -140,26 +176,28 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                 thisBS = bodySystems[bSIndx];
                 sIndx = thisBS.symptoms.length;
                 $.each(symIndexArray, function(key, obj){
-                    if (obj.bSArr.indexOf(thisBS.bodySystem) != -1)
+                    if (obj.bSArr.indexOf(thisBS.bodySystem[0]) != -1)
                     {
                         sItems += `<div class="card">
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}"> 
                                         <input class="text sInput" name="${thisBS.slctID}_s${sIndx}_Cmt">  
                                         <a class="item-link item-content" 
-                                            href="/ratePage/${thisBS.bodySystem}/${obj.name.toUpperCase()}/${thisBS.slctID}_s${sIndx}/${thisBS.slctID}_s${sIndx}_Cmt/">                                        
-                                            <div class="card-content">
+                                            href="/ratePage/${thisBS.bodySystem[0]}/${obj.name}/${bSIndx}/${sIndx}/">                                        
+                                            <div class="card-content notRated" id="${thisBS.slctID}_s${sIndx}">
                                                 <div class="item-inner"> 
                                                     <div class="item-title">                                               
                                                         ${obj.name}
                                                     </div>
                                                     <div class="item-after">
-                                                        <span name="s${sIndx}" class="badge notRated">NR</span>    
+                                                        <span id="${thisBS.slctID}_s${sIndx}_r8" name="s${sIndx}" class="badge">NR</span>    
                                                     </div>
                                                 </div>                                            
                                             </div>
                                         </a>
                                     </div>`
-                        thisBS.symptoms.push({elID:`${thisBS.slctID}_s${sIndx}`,rate:"", comment:""});
+                        thisBS.symptoms.push({name:[`${obj.name}`,""],
+                                              rate:["NR",""], 
+                                              comment:["",""]});
                         sIndx = thisBS.symptoms.length;
                     }            
                 });            
@@ -175,9 +213,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                         </div>`;
 
             $(`#${thisBS.divID}`).html(html);
-            $('.sInput').hide();
-            $('#addComplaint').show();
-
+            $('.sInput').hide();     
         }, 
         //Create language Smart Select
         createLngSS: function() {
@@ -191,7 +227,7 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                             <select name="Language">
                                 ${options}
                             </select>
-                            <div class="item-content">
+                            <div class="item-content item-input">
                                 <div class="item-inner lngInput notSlctd">
                                     <div class="item-title item-label">Local Language</div>
                                 </div>
@@ -211,11 +247,80 @@ var bsIndexArray = ["General Feeling","Head","Eye","Ear","Nose","Mouth","Neck/Th
                     }
                 }
             });
-        }
+        },
+        createRateList: function() {
+            var radioHtml = "";
+            $.each(rates, function(key, r8Obj){
+                radioHtml += `<li>
+                                <label class="item-radio item-content ${r8Obj.className}">
+                                    <input type="radio" name="r8RadioGroup" value=${r8Obj.score}/>
+                                    <i class="icon icon-radio"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">${r8Obj.name}</div>
+                                        <div class="item-after">
+                                            <span class="badge r8Badge">
+                                                ${r8Obj.score}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </li>`
+            });
+            var cmtHtml = `<li class="item-content item-input">
+                                <div class="item-inner" id="r8CmtHolder">
+                                    <div class="item-title item-label">Additional Comments:</div>
+                                    <div class="item-input-wrap">
+                                        <textarea id="r8Cmt" class="resizable"></textarea>
+                                    </div>
+                                </div>
+                            </li>`
+            $('#r8Holder').html(radioHtml + cmtHtml);
+        },        
+        setUser: function() {
+            var form = app.form.convertToData('#myInfo');
+            user.name = form.Name;
+            user.location = form.Location;
+            user.language = form.Language;
+        },
+        rateSymptom: function(obj) {
+            var thisSymp = bodySystems[obj.bSID].symptoms[obj.sID];
+            var r8 = "";
+            var cmt = $('#r8Cmt')[0].value;
+
+            $.each($('.item-radio input'), function(key, value){
+                if (value.checked)
+                {
+                    r8 = rates[key].name;
+                }
+            })
+
+            //update table
+            thisSymp.rate[0] = r8;
+            thisSymp.comment[0] = cmt;
+
+            slctdbS = bodySystems[obj.bSID];
+            
+            //Show buttons 
+            $('#bSBtnDiv').show();
+        },
+        upd8Bdg: function() {
+            var thisR8Name = {},
+                addRemove = "",
+                $sID = {},
+                $r8ID = {};
+            $.each(bodySystems, function(bSID, bS){                
+                $.each(bS.symptoms, function (sID, sObj) {
+                    thisR8Name = sObj.rate[0];
+                    $sID = $(`#${bS.slctID}_s${sID}`);
+                    $r8ID = $(`#${bS.slctID}_s${sID}_r8`);
+                    $.each(rates, function (r8ID, r8Obj) {
+                        addRemove = (thisR8Name === r8Obj.name) ? "addClass" : "removeClass";
+                        $sID[addRemove](r8Obj.className);
+                        if (thisR8Name === r8Obj.name) $r8ID[0].textContent = r8Obj.score;
+                    })
+                })
+            })
+            $(`#${slctdbS.divID} .accordion-item.indent`).addClass('accordion-item-opened');
+        },
+       
     }
-    
-
-
-//Create a body system smart select on page load
-//usrComplaint.createBSSS();
-/* usrComplaint.createLngSS(); */

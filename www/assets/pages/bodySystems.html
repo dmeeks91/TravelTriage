@@ -33,19 +33,20 @@
             </div>
         </div>                           
         
-        <div class="page-content">
+        <div class="page-content bSpage">
             <div class="container" id="slctBodySystem">
                 <form class="list store-data" id="myForm">
                     <div id="bSHolder"> 
                     </div>
                 </form>
-                <div class="fab" id="addComplaint">
-                    <a href="#">
-                    <i class="icon f7-icons">add</i>
-                    </a>
-                </div>
-                <div class="btnHolder">
-                    <a class="button button-big button-fill"  id="bSBtn" href="/translate/3/">Submit</a>
+                <div class="btnHolder row" id="bSBtnDiv">
+                    <div class="col"></div>
+                    <div class="col">
+                        <a class="col button button-big button-fill"  @click="addBSSS" id="newBSBtn">Add</a>
+                    </div>
+                    <div class="col">
+                        <a class="col button button-big button-fill"  id="bSBtn" href="/translate/3/">Submit</a>
+                    </div>                    
                 </div>
             </div>               
         </div>
@@ -53,16 +54,24 @@
 </template>
 <script>
     return {
+        methods: {
+            addBSSS: function(){
+                usrComplaint.createBSSS();
+            }
+        },
         data: function() {
             return {
             }
         },
         on: {
-            pageBeforeIn: function(e,page) {
+            pageBeforeIn: function(e, page) {
                 if (bodySystems.length === 0)
                 {
                     usrComplaint.createBSSS();
                 }
+            },
+            pageAfterIn: function(e, page) {
+                    usrComplaint.upd8Bdg();
             }
         }
     }

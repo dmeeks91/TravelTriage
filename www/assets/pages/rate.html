@@ -20,28 +20,19 @@
                 <div class="right"></div>
             </div>
         </div>  
-        <div class="page-content">         
-            <div class="r8Card">
-                <div class="card-header">
-                    <p>{{$route.params.sVal}}</p>
-                </div>
-                <div class="card-content">
+        <div class="page-content">
+            <div class="block-title">
+                {{$route.params.sVal}}
+            </div>         
+            <div class="card" id="r8Card">                
+                <div class="container card-content">
                     <div class="list no-hairlines no-hairlines-between">
-                        <ul>
-                            {{#each rates}}
-                                <li>
-                                    <a class="item-link back" href="#">
-                                        <div class="card-content r8Content">
-                                            <div class="item-inner">
-                                                <div class="item-title"><b>{{r8Name}}</b></div>
-                                                <div class="item-after"><span class="badge">{{score}}</span></div>
-                                            </div>
-                                        </div> 
-                                    </a>
-                                </li>
-                            {{/each}}
+                        <ul id="r8Holder">
                         </ul>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <a class="button button-fill btnNext back">Rate</a>
                 </div>
             </div>
         </div>
@@ -49,35 +40,23 @@
 </template>
 <script>
     return {
+        methods: {
+            rateSymptom: function (indx) {
+                console.log(rates[indx]);
+                console.log(indx);
+            },
+        },
+        on: {
+            pageBeforeIn: function(e, page) {
+                usrComplaint.createRateList();
+            },
+            pageBeforeOut: function(e, page) {
+                usrComplaint.rateSymptom(page.route.params);
+            }
+        },
         data: function() {
             return {
-                rates: [
-                    {
-                        r8Name: "Mild",
-                        className: "Mld",
-                        score: "1",
-                    },
-                    {
-                        r8Name: "Mild/Moderate",
-                        className: "Mld-Mdr8",
-                        score: "2",
-                    },
-                    {
-                        r8Name: "Moderate",
-                        className: "Mdr8",
-                        score: "3",
-                    },
-                    {
-                        r8Name: "Moderate/Severe",
-                        className: "Mdr8-Svr",
-                        score: "4",
-                    },
-                    {
-                        r8Name: "Severe",
-                        className: "Svr",
-                        score: "5",
-                    }
-                ]
+                
             }
         }
     }

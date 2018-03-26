@@ -20,12 +20,6 @@
     width: 100%;
 }
 
-.badge.notRated {
-    background-color: #ffffff;
-    border: 1px solid #ae9c9c;
-    color: #ae9c9c;
-}
-
 .md .badge,
 .ios .badge,
 span.badge {
@@ -36,8 +30,7 @@ span.badge {
     line-height: 20px;
 }
 
-#bSHolder,
-#r8Holder{
+#bSHolder{
     width: 95%;
     margin: auto;
     margin-top: 10%;
@@ -56,6 +49,87 @@ span.badge {
     font-size: 250%;
     font-weight: bold;
     color: #8e8e93;
+}
+
+#r8CmtHolder {
+    border-top: 1px solid #8e8e93;
+    width: 95%;
+    padding-top: 5%;
+    margin-top: 3%;
+}
+
+.item-title.item-label {
+    padding: 2%;
+}
+
+#r8CmtHolder .item-label {
+    padding-bottom: 1.5%;
+    font-size: unset;
+}
+
+.r8Badge {
+    margin-top: 20%;
+}
+
+.notRated .item-inner .item-after span.badge {
+    background-color: #ffffff;
+    border: 1px solid #ae9c9c;
+    color: #ae9c9c;
+}
+
+.Mld .icon-radio {
+    border-color: #91be32 !important;
+}
+.Mld .item-inner .item-title {
+    color: #91be32 !important;
+}
+.Mld .item-inner .item-after span.badge {
+    background: #91be32 !important;
+    color: white !important;
+}
+
+.Mld-Mdr8 .icon-radio {
+    border-color: #e1e12e !important;
+}
+.Mld-Mdr8 .item-inner .item-title {
+    color: #e1e12e !important;
+}
+.Mld-Mdr8 .item-inner .item-after span.badge {
+    background: #e1e12e !important;
+    color: white !important;
+}
+
+.Mdr8 .icon-radio {
+    border-color: #f3b210 !important;
+}
+.Mdr8 .item-inner .item-title {
+    color: #f3b210 !important;
+}
+.Mdr8 .item-inner .item-after span.badge {
+    background: #f3b210 !important;
+    color: white !important;
+}
+
+.Mdr8-Svr .icon-radio {
+    border-color: #f37100 !important;
+}
+.Mdr8-Svr .item-inner .item-title {
+    color: #f37100 !important;
+}
+.Mdr8-Svr .item-inner .item-after span.badge {
+    background: #f37100 !important;
+    color: white !important;
+}
+
+.Svr .icon-radio {
+    border-color: #d30000 !important;
+}
+.Svr .item-inner .item-title {
+    color: #d30000 !important;
+}
+.Svr .item-inner .item-after span.badge {
+    background: #d30000 !important;
+    color: white !important;
 }
 
 .bSCard, .r8Card{
@@ -141,7 +215,8 @@ button {
 .right {
     width: 10%;
 }
-#usrCard {
+#usrCard,
+#r8Card{
     width: 90%;
     margin: auto;
 }
@@ -153,8 +228,10 @@ button {
 .lngInput .item-after {
     text-align: left;
     width: 100%;
-    margin-left: 1%;
+    margin-left: unset;
+    padding-left: unset !important;
     font-size: 115% !important;
+    padding-top: 1%;
 }
 
 .item-input-wrap input {
@@ -178,4 +255,40 @@ button {
 .toolbar.tabbar {
     top: 92%;
     height: 8%;
+}
+
+.md .data-table tbody .symptOld {
+    font-style: italic;
+    font-size: 12px;
+    color: grey;
+}
+
+.md .data-table .bsHead {
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    display: inline;
+}
+
+.page-content {
+    padding-bottom: 10%;
+}
+
+.block-title {
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+#bSBtn
+{
+    margin: auto;
+    background-color:#ff0000;
+    box-shadow: 1px 2px 4px #013e7d;
+}
+
+#newBSBtn
+{
+    margin: auto;    
+    background-color: #2196f3;
+    box-shadow: 1px 2px 4px #4f0404;
 }

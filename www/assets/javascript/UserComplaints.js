@@ -94,42 +94,10 @@ var usrComplaint = {
          /* At this point I think this function is a nice to have. for the time being just make sure that 
          neither of the global index arrays have duplicate values manually I can forsee duplicates causing issues */
     },
-    //Function to initiate setup. At this point it is only setting up the global variables
-    setup: function(){
-        this.fillBS();
-        this.fillSympt();
-     },    
-    symptSelect: function(){
-          $('select[name="bodysystems"]').change(function() {
-         var selectedBS = $('select[name="bodysystems"] option:selected').text(); // gets name of bodysystem selected
-          var bsSelect = selectedBS; // Replace this with user selection from Smart Select
-          var bsID = bsIndexArray.indexOf(bsSelect);
-          var symptArr = [];
-          $.each(symptoms, function(i, symptObj) {
-             if (symptObj.BSArr.indexOf(bsID) !== -1) {
-                 symptArr.push(symptObj.Name);
-                 //console.log(symptObj)
-             }
-
-         if (maxAppend === 2) return; //limits only 1 symptom dropdown created
-         var symptomDropdown = ` <li>
-         <a href="#" class="item-link smart-select" data-close-on-select="true">
-         <select name="symptoms" class="symptoms">
-         </select>
-         <div class="item-content">
-         <div class="item-inner">
-         <div class="item-title">Symptoms</div>
-         <div class="item-after"></div>
-         </div>
-         </div>
-         </a>
-         </li>`
-         maxAppend++;
-         $("#symptomdropdown").append(symptomDropdown) //appends symptom dropdown once body system is selected
-     }) 
-        //console.log(symptArr); // This array will be the response needed for the next Smart Select
-     })
- }
+    location: "",
+    setLocation: function() {
+        console.log(app.form.convertFormToData('#myForm'));
+    }
 }
     
     //Functions to be called when page loads

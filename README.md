@@ -1,7 +1,7 @@
 # TravelTriage
 Group Project #1 (Erin Britton, Dominique Meeks, Lacie Forrest and Peter Carmines)
 
-* Click [Here](https://dmeeks91.github.io/TravelTriage/) to view the app.
+* Click [Here](https://dmeeks91.github.io/TravelTriage/) to View the Live App.
 
 ## Overview
 According to the [Centers for Disease Control and Prevention], a traveler should "carry a card that identifies, in the local language, your blood type, any chronic illnesses you have, any medicines you are taking, and any allergies you have." However, this leaves a gap of communicating the acute reasons for an urgent care visit in the local language. The purpose of this web app is to provide a simple tool to document and translate medical symptoms to prepare for an urgent care visit abroad and to expedite the process of seeking care by suggesting nearby urgent care facilities. 
